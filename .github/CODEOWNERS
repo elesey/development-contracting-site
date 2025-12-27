@@ -1,0 +1,13 @@
+# CODEOWNERS - Define code ownership for automatic review requests
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything in the repo
+# Replace with your GitHub username or team
+* @OWNER
+
+# Frontend/Astro files
+# *.astro @frontend-team
+# src/ @frontend-team
+
+# CI/CD configuration
+# .github/ @devops-team
