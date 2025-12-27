@@ -10,18 +10,28 @@
     "typecheck": "astro check",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "lint": "eslint \"src/**/*.{js,ts,astro}\"",
-    "lint:fix": "eslint \"src/**/*.{js,ts,astro}\" --fix",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,astro}\"",
+    "lint:fix": "eslint \"src/**/*.{js,jsx,ts,tsx,astro}\" --fix",
     "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
+    "@astrojs/react": "^4.4.2",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.6",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.26",
+    "lucide-react": "^0.562.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@typescript-eslint/parser": "^8.50.1",
     "eslint": "^9.39.2",
     "eslint-plugin-astro": "^1.5.0",
@@ -30,10 +40,11 @@
     "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.2"
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "lint-staged": {
-    "*.{js,ts,astro}": [
+    "*.{js,jsx,ts,tsx,astro}": [
       "prettier --write",
       "eslint --fix"
     ],
