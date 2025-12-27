@@ -1,9 +1,18 @@
 import eslintPluginAstro from "eslint-plugin-astro";
 import jsxA11y from "eslint-plugin-jsx-a11y";
+import tsParser from "@typescript-eslint/parser";
 
 export default [
   // Astro recommended config
   ...eslintPluginAstro.configs.recommended,
+
+  // Parse TypeScript files without type-aware rules.
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    languageOptions: {
+      parser: tsParser,
+    },
+  },
 
   // JSX a11y recommended config for accessibility
   {
