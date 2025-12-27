@@ -11,7 +11,8 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint": "eslint \"src/**/*.{js,ts,astro}\"",
-    "lint:fix": "eslint \"src/**/*.{js,ts,astro}\" --fix"
+    "lint:fix": "eslint \"src/**/*.{js,ts,astro}\" --fix",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -25,8 +26,19 @@
     "eslint": "^9.39.2",
     "eslint-plugin-astro": "^1.5.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "prettier": "^3.7.4",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2"
+  },
+  "lint-staged": {
+    "*.{js,ts,astro}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,md,css,html}": [
+      "prettier --write"
+    ]
   }
 }
