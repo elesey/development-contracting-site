@@ -1,58 +1,219 @@
 @import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
+/* Sophisticated General Contractor Theme */
+@theme {
+  /* Colors - using CSS custom properties */
+  --color-background: hsl(30 15% 7%);
+  --color-foreground: hsl(40 20% 92%);
+  --color-card: hsl(30 12% 10%);
+  --color-card-foreground: hsl(40 20% 92%);
+  --color-popover: hsl(30 12% 10%);
+  --color-popover-foreground: hsl(40 20% 92%);
+
+  /* Copper/bronze accent for sophistication */
+  --color-primary: hsl(28 65% 52%);
+  --color-primary-foreground: hsl(30 15% 7%);
+
+  /* Warm gray secondary */
+  --color-secondary: hsl(30 8% 18%);
+  --color-secondary-foreground: hsl(40 20% 92%);
+
+  /* Muted tones */
+  --color-muted: hsl(30 8% 15%);
+  --color-muted-foreground: hsl(30 10% 55%);
+
+  /* Accent - gold/bronze */
+  --color-accent: hsl(38 70% 50%);
+  --color-accent-foreground: hsl(30 15% 7%);
+
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(0 0% 98%);
+  --color-border: hsl(30 10% 20%);
+  --color-input: hsl(30 10% 20%);
+  --color-ring: hsl(28 65% 52%);
+
+  /* Custom colors */
+  --color-copper: hsl(28 65% 52%);
+  --color-bronze: hsl(30 50% 40%);
+  --color-charcoal: hsl(30 15% 7%);
+
+  /* Border radius */
+  --radius: 0.5rem;
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+
+  /* Animation */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
 
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "DM Sans", system-ui, sans-serif;
   }
+
+  /* Premium typography */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  /* Textured background overlays */
+  .texture-noise {
+    position: relative;
+  }
+
+  .texture-noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .texture-grain {
+    position: relative;
+  }
+
+  .texture-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Brushed metal effect */
+  .texture-brushed {
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 1px,
+      rgba(255, 255, 255, 0.01) 1px,
+      rgba(255, 255, 255, 0.01) 2px
+    );
+  }
+
+  /* Copper gradient */
+  .gradient-copper {
+    background: linear-gradient(
+      135deg,
+      hsl(28, 65%, 52%) 0%,
+      hsl(30, 50%, 40%) 50%,
+      hsl(25, 70%, 45%) 100%
+    );
+  }
+
+  /* Subtle glow effect */
+  .glow-copper {
+    box-shadow: 0 0 40px -10px hsl(28, 65%, 52%);
+  }
+
+  /* Text gradient */
+  .text-gradient-copper {
+    background: linear-gradient(135deg, hsl(28, 65%, 55%), hsl(38, 70%, 55%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Stagger delays */
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(30, 15%, 7%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(30, 10%, 25%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(28, 65%, 52%);
 }

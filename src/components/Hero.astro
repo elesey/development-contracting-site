@@ -1,0 +1,267 @@
+---
+import { HeroHighlight, Highlight } from "./aceternity/HeroHighlight";
+import { TextGenerateEffect } from "./aceternity/TextGenerateEffect";
+import { SpotlightButton } from "./aceternity/SpotlightButton";
+
+const tagline = "Building the Future, Restoring the Past";
+const subtitle =
+  "Expert residential and commercial renovation services. From concept to completion, we transform spaces with precision, care, and uncompromising quality.";
+---
+
+<section class="relative min-h-screen overflow-hidden" id="hero">
+  <!-- Hero Highlight Background Effect (React Island) - Now wraps everything for proper cursor tracking -->
+  <HeroHighlight
+    client:load
+    containerClassName="absolute inset-0"
+    className="h-full w-full"
+  >
+    <!-- Empty div required by component -->
+    <div></div>
+  </HeroHighlight>
+
+  <!-- Decorative elements - pointer-events-none so they don't block -->
+  <div class="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
+    <!-- Textured background layer -->
+    <div class="texture-noise absolute inset-0"></div>
+
+    <!-- Gradient overlay -->
+    <div
+      class="from-background/80 via-background/60 to-background/80 absolute inset-0 bg-gradient-to-b"
+    >
+    </div>
+
+    <!-- Grid pattern -->
+    <div
+      class="absolute inset-0 opacity-[0.02]"
+      style="background-image: linear-gradient(hsl(var(--color-primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--color-primary)) 1px, transparent 1px); background-size: 100px 100px;"
+    >
+    </div>
+
+    <!-- Large decorative circles -->
+    <div
+      class="border-primary/5 absolute -top-64 -right-64 h-[800px] w-[800px] rounded-full border"
+    >
+    </div>
+    <div
+      class="border-primary/10 absolute -top-48 -right-48 h-[600px] w-[600px] rounded-full border"
+    >
+    </div>
+
+    <!-- Accent lines -->
+    <div
+      class="via-primary/20 absolute top-1/3 left-0 h-px w-1/3 bg-gradient-to-r from-transparent to-transparent"
+    >
+    </div>
+    <div
+      class="via-primary/20 absolute top-2/3 right-0 h-px w-1/4 bg-gradient-to-l from-transparent to-transparent"
+    >
+    </div>
+  </div>
+
+  <!-- Content - positioned above decorative elements but allows pointer events to pass through gaps -->
+  <div
+    class="relative z-[2] container mx-auto flex min-h-screen flex-col justify-center px-6 pt-24"
+  >
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <!-- Text Content -->
+      <div class="max-w-2xl">
+        <!-- Badge -->
+        <div
+          class="animate-fade-in-up border-primary/20 bg-primary/5 mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5"
+        >
+          <span class="bg-primary h-1.5 w-1.5 animate-pulse rounded-full"
+          ></span>
+          <span class="text-primary text-xs tracking-widest uppercase"
+            >Licensed • Bonded • Insured</span
+          >
+        </div>
+
+        <!-- Main headline -->
+        <h1
+          class="animate-fade-in-up font-serif text-4xl leading-tight font-medium tracking-tight delay-100 sm:text-5xl md:text-6xl lg:text-7xl"
+        >
+          <span class="text-foreground">Building the</span>
+          <br />
+          <Highlight client:visible className="text-foreground">
+            Future
+          </Highlight>
+          <span class="text-muted-foreground">,</span>
+          <br />
+          <span class="text-foreground">Restoring the</span>
+          <br />
+          <span class="text-gradient-copper">Past</span>
+        </h1>
+
+        <!-- Subtitle with text generate effect -->
+        <div class="animate-fade-in-up mt-8 max-w-lg delay-200">
+          <TextGenerateEffect
+            client:visible
+            words={subtitle}
+            className="text-muted-foreground text-lg"
+          />
+        </div>
+
+        <!-- CTAs -->
+        <div
+          class="animate-fade-in-up mt-10 flex flex-col gap-4 delay-300 sm:flex-row sm:items-center"
+        >
+          <SpotlightButton client:visible href="#contact">
+            Get Free Estimate
+          </SpotlightButton>
+
+          <a
+            href="/residential"
+            class="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 px-6 py-4 text-sm tracking-widest uppercase transition-colors"
+          >
+            <span>View Our Work</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4 transition-transform group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Stats row -->
+        <div
+          class="animate-fade-in-up border-border/50 mt-16 grid grid-cols-3 gap-8 border-t pt-8 delay-400"
+        >
+          <div>
+            <div class="text-primary font-serif text-3xl font-medium">200+</div>
+            <div
+              class="text-muted-foreground mt-1 text-xs tracking-wider uppercase"
+            >
+              Projects
+            </div>
+          </div>
+          <div>
+            <div class="text-primary font-serif text-3xl font-medium">10+</div>
+            <div
+              class="text-muted-foreground mt-1 text-xs tracking-wider uppercase"
+            >
+              Years Exp.
+            </div>
+          </div>
+          <div>
+            <div class="text-primary font-serif text-3xl font-medium">5★</div>
+            <div
+              class="text-muted-foreground mt-1 text-xs tracking-wider uppercase"
+            >
+              Reviews
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Image Placeholder -->
+      <div class="relative hidden lg:block">
+        <div class="relative aspect-[4/5] overflow-hidden rounded-sm">
+          <!-- Placeholder with construction aesthetic -->
+          <div
+            class="from-secondary via-secondary/80 to-muted absolute inset-0 bg-gradient-to-br"
+          >
+          </div>
+
+          <!-- Decorative overlay -->
+          <div class="texture-brushed absolute inset-0"></div>
+
+          <!-- Blueprint-style grid -->
+          <div
+            class="absolute inset-0 opacity-10"
+            style="background-image: linear-gradient(hsl(var(--color-primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--color-primary)) 1px, transparent 1px); background-size: 20px 20px;"
+          >
+          </div>
+
+          <!-- Placeholder text -->
+          <div
+            class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
+          >
+            <div class="border-primary/30 mb-4 h-16 w-16 rounded border">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="text-primary/50 h-full w-full p-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"
+                ></path>
+              </svg>
+            </div>
+            <span
+              class="text-muted-foreground text-sm tracking-widest uppercase"
+              >Hero Image</span
+            >
+            <span class="text-muted-foreground/60 mt-1 text-xs"
+              >Placeholder</span
+            >
+          </div>
+
+          <!-- Frame accents -->
+          <div
+            class="from-primary/50 absolute top-0 left-0 h-24 w-px bg-gradient-to-b to-transparent"
+          >
+          </div>
+          <div
+            class="from-primary/50 absolute top-0 left-0 h-px w-24 bg-gradient-to-r to-transparent"
+          >
+          </div>
+          <div
+            class="from-primary/50 absolute right-0 bottom-0 h-24 w-px bg-gradient-to-t to-transparent"
+          >
+          </div>
+          <div
+            class="from-primary/50 absolute right-0 bottom-0 h-px w-24 bg-gradient-to-l to-transparent"
+          >
+          </div>
+        </div>
+
+        <!-- Floating badge -->
+        <div
+          class="border-primary/30 bg-card/90 absolute -bottom-6 -left-6 rounded border px-6 py-4 shadow-xl backdrop-blur-sm"
+        >
+          <div class="text-muted-foreground text-xs tracking-widest uppercase">
+            Servicing
+          </div>
+          <div class="text-foreground mt-1 font-serif text-lg font-medium">
+            Oregon & Washington
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 z-[2] -translate-x-1/2 animate-bounce">
+    <div
+      class="border-muted-foreground/30 flex h-10 w-6 items-start justify-center rounded-full border p-1"
+    >
+      <div class="bg-primary/60 h-2 w-1 rounded-full"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Dot pattern backgrounds for HeroHighlight */
+  :global(.bg-dot-thick-neutral-800) {
+    background-image: radial-gradient(hsl(30 10% 20%) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  :global(.bg-dot-thick-copper) {
+    background-image: radial-gradient(hsl(28 65% 52%) 1.5px, transparent 1px);
+    background-size: 16px 16px;
+  }
+</style>

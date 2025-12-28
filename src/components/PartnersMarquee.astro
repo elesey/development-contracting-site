@@ -1,0 +1,129 @@
+---
+interface Partner {
+  name: string;
+  tagline?: string;
+}
+
+const partners: Partner[] = [
+  { name: "Kohler", tagline: "Kitchen & Bath" },
+  { name: "Moen", tagline: "Fixtures" },
+  { name: "Delta", tagline: "Faucets" },
+  { name: "American Standard", tagline: "Plumbing" },
+  { name: "Toto", tagline: "Toilets" },
+  { name: "Andersen", tagline: "Windows" },
+  { name: "Pella", tagline: "Doors & Windows" },
+  { name: "Milgard", tagline: "Windows" },
+  { name: "James Hardie", tagline: "Siding" },
+  { name: "GAF", tagline: "Roofing" },
+  { name: "CertainTeed", tagline: "Building Materials" },
+  { name: "Shaw Floors", tagline: "Flooring" },
+];
+
+// Duplicate for seamless loop
+const allPartners = [...partners, ...partners];
+---
+
+<section
+  class="border-border/30 bg-secondary/30 relative overflow-hidden border-y py-12"
+>
+  <!-- Subtle texture -->
+  <div class="texture-grain absolute inset-0"></div>
+
+  <!-- Fade edges -->
+  <div
+    class="from-background pointer-events-none absolute top-0 left-0 z-10 h-full w-32 bg-gradient-to-r to-transparent"
+  >
+  </div>
+  <div
+    class="from-background pointer-events-none absolute top-0 right-0 z-10 h-full w-32 bg-gradient-to-l to-transparent"
+  >
+  </div>
+
+  <!-- Header -->
+  <div class="container mx-auto mb-8 px-6 text-center">
+    <span class="text-muted-foreground text-xs tracking-[0.3em] uppercase">
+      Trusted Partners & Brands We Work With
+    </span>
+  </div>
+
+  <!-- Marquee container -->
+  <div class="marquee-wrapper relative flex overflow-hidden">
+    <div
+      class="marquee-track animate-marquee flex shrink-0 items-center gap-16 pr-16"
+    >
+      {
+        allPartners.map((partner) => (
+          <div class="group flex flex-col items-center">
+            {/* Logo placeholder with text */}
+            <div class="border-border/50 bg-card/50 group-hover:border-primary/30 group-hover:bg-card flex h-16 w-40 items-center justify-center rounded border px-4 transition-all duration-300">
+              <span class="text-foreground/80 group-hover:text-primary font-serif text-lg font-medium transition-colors">
+                {partner.name}
+              </span>
+            </div>
+            {partner.tagline && (
+              <span class="text-muted-foreground/60 mt-2 text-[10px] tracking-widest uppercase">
+                {partner.tagline}
+              </span>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // Smooth ease-to-stop on hover using Web Animations API
+  // Note: Astro scripts run after DOM is ready, no DOMContentLoaded needed
+  const section = document.querySelector("section:has(.marquee-wrapper)");
+  const track = document.querySelector(".marquee-track") as HTMLElement | null;
+
+  if (section && track) {
+    // Remove CSS animation class and create animation via Web Animations API
+    // This ensures getAnimations() will reliably find and control the animation
+    track.classList.remove("animate-marquee");
+
+    // Create the animation using Web Animations API
+    const marqueeAnimation = track.animate(
+      [{ transform: "translateX(0%)" }, { transform: "translateX(-50%)" }],
+      {
+        duration: 30000,
+        iterations: Infinity,
+        easing: "linear",
+      },
+    );
+
+    let currentRate = 1;
+    let targetRate = 1;
+    let rafId: number | null = null;
+
+    const easeRate = () => {
+      // Quick ease - lerp factor of 0.15 for fast but smooth deceleration
+      const lerpFactor = 0.15;
+      currentRate += (targetRate - currentRate) * lerpFactor;
+
+      // Clamp very small values to target to prevent endless loop
+      if (Math.abs(currentRate - targetRate) < 0.001) {
+        currentRate = targetRate;
+      }
+
+      marqueeAnimation.playbackRate = currentRate;
+
+      if (currentRate !== targetRate) {
+        rafId = requestAnimationFrame(easeRate);
+      }
+    };
+
+    section.addEventListener("mouseenter", () => {
+      targetRate = 0;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(easeRate);
+    });
+
+    section.addEventListener("mouseleave", () => {
+      targetRate = 1;
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(easeRate);
+    });
+  }
+</script>

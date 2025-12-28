@@ -1,0 +1,265 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+const navItems: NavItem[] = [
+  { label: "Commercial", href: "/commercial" },
+  { label: "Residential", href: "/residential" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+const phoneNumber = "(503) 470-7007";
+---
+
+<header
+  class="fixed top-0 right-0 left-0 z-50 origin-top transition-all duration-500"
+  id="main-header"
+>
+  <!-- Gradient backdrop -->
+  <div
+    class="from-background/95 via-background/80 absolute inset-0 bg-gradient-to-b to-transparent transition-all duration-500"
+    id="header-backdrop"
+  >
+  </div>
+
+  <div
+    class="relative container mx-auto px-6 py-5 transition-all duration-500"
+    id="header-inner"
+  >
+    <nav class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="group relative z-10 flex items-center gap-3">
+        <!-- Placeholder Logo -->
+        <div
+          class="border-primary/30 bg-secondary/50 group-hover:border-primary/60 group-hover:shadow-primary/10 flex h-12 w-12 items-center justify-center rounded border transition-all duration-300 group-hover:shadow-lg"
+        >
+          <span class="text-primary text-xl font-bold">DC</span>
+        </div>
+        <div class="hidden sm:block">
+          <span
+            class="text-foreground block font-serif text-lg font-medium tracking-tight"
+          >
+            Development
+          </span>
+          <span
+            class="text-muted-foreground block text-[10px] tracking-[0.3em] uppercase"
+          >
+            Contracting
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden items-center gap-1 md:flex">
+        {
+          navItems.map((item) => (
+            <a
+              href={item.href}
+              class="nav-link group text-muted-foreground hover:text-foreground relative px-4 py-2 text-sm tracking-widest uppercase transition-colors"
+            >
+              <span class="relative z-10">{item.label}</span>
+              {/* Hover underline effect */}
+              <span class="bg-primary absolute right-4 bottom-1 left-4 h-px origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- CTA & Phone -->
+      <div class="flex items-center gap-4">
+        <a
+          href={`tel:${phoneNumber.replace(/[^0-9]/g, "")}`}
+          class="text-muted-foreground hover:text-primary hidden items-center gap-2 text-sm transition-colors lg:flex"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+            ></path>
+          </svg>
+          <span class="font-medium">{phoneNumber}</span>
+        </a>
+
+        <a
+          href="#contact"
+          class="group border-primary/30 bg-primary/10 text-primary hover:border-primary hover:bg-primary hover:text-primary-foreground relative overflow-hidden rounded-sm border px-5 py-2.5 text-xs font-medium tracking-widest uppercase transition-all duration-300"
+        >
+          <span class="relative z-10">Free Estimate</span>
+        </a>
+
+        <!-- Mobile menu button -->
+        <button
+          class="border-border/50 relative z-10 flex h-10 w-10 items-center justify-center rounded border md:hidden"
+          id="mobile-menu-btn"
+          aria-label="Toggle menu"
+        >
+          <div class="flex flex-col gap-1.5" id="hamburger-icon">
+            <span
+              class="bg-foreground block h-0.5 w-5 transition-transform duration-300"
+            ></span>
+            <span
+              class="bg-foreground block h-0.5 w-5 transition-opacity duration-300"
+            ></span>
+            <span
+              class="bg-foreground block h-0.5 w-5 transition-transform duration-300"
+            ></span>
+          </div>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    class="bg-background/98 fixed inset-0 z-40 hidden backdrop-blur-lg"
+    id="mobile-menu"
+  >
+    <div class="flex h-full flex-col items-center justify-center gap-8">
+      {
+        navItems.map((item, index) => (
+          <a
+            href={item.href}
+            class="mobile-nav-link text-foreground hover:text-primary text-2xl tracking-widest uppercase opacity-0 transition-all duration-300"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={`tel:${phoneNumber.replace(/[^0-9]/g, "")}`}
+        class="text-primary mt-8 flex items-center gap-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+          ></path>
+        </svg>
+        <span class="text-lg font-medium">{phoneNumber}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Header scroll effect - shrinks ~10% on scroll
+  const header = document.getElementById("main-header");
+  const headerInner = document.getElementById("header-inner");
+  const backdrop = document.getElementById("header-backdrop");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      // Shrink the header on scroll
+      header?.classList.add("scale-[0.92]");
+      headerInner?.classList.add("py-3");
+      headerInner?.classList.remove("py-5");
+      backdrop?.classList.add(
+        "bg-background/95",
+        "backdrop-blur-md",
+        "shadow-lg",
+        "shadow-black/20",
+      );
+      backdrop?.classList.remove(
+        "bg-gradient-to-b",
+        "from-background/95",
+        "via-background/80",
+        "to-transparent",
+      );
+    } else {
+      // Return to original size
+      header?.classList.remove("scale-[0.92]");
+      headerInner?.classList.remove("py-3");
+      headerInner?.classList.add("py-5");
+      backdrop?.classList.remove(
+        "bg-background/95",
+        "backdrop-blur-md",
+        "shadow-lg",
+        "shadow-black/20",
+      );
+      backdrop?.classList.add(
+        "bg-gradient-to-b",
+        "from-background/95",
+        "via-background/80",
+        "to-transparent",
+      );
+    }
+  });
+
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const hamburgerIcon = document.getElementById("hamburger-icon");
+  const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+  let isMenuOpen = false;
+
+  mobileMenuBtn?.addEventListener("click", () => {
+    isMenuOpen = !isMenuOpen;
+
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+
+      // Animate hamburger to X
+      const spans = hamburgerIcon?.querySelectorAll("span");
+      if (spans) {
+        spans[0].style.transform = "rotate(45deg) translate(4px, 4px)";
+        spans[1].style.opacity = "0";
+        spans[2].style.transform = "rotate(-45deg) translate(4px, -4px)";
+      }
+
+      // Animate nav links
+      mobileNavLinks.forEach((link, index) => {
+        setTimeout(() => {
+          (link as HTMLElement).style.opacity = "1";
+          (link as HTMLElement).style.transform = "translateY(0)";
+        }, index * 100);
+      });
+    } else {
+      // Reset hamburger
+      const spans = hamburgerIcon?.querySelectorAll("span");
+      if (spans) {
+        spans[0].style.transform = "";
+        spans[1].style.opacity = "1";
+        spans[2].style.transform = "";
+      }
+
+      // Hide menu
+      mobileNavLinks.forEach((link) => {
+        (link as HTMLElement).style.opacity = "0";
+        (link as HTMLElement).style.transform = "translateY(20px)";
+      });
+
+      setTimeout(() => {
+        mobileMenu?.classList.add("hidden");
+        document.body.style.overflow = "";
+      }, 300);
+    }
+  });
+</script>
+
+<style>
+  .mobile-nav-link {
+    transform: translateY(20px);
+  }
+</style>
