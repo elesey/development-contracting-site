@@ -24,7 +24,7 @@ const allPartners = [...partners, ...partners];
 ---
 
 <section
-  class="border-border/30 bg-secondary/30 relative overflow-hidden border-y py-12"
+  class="marquee-section border-border/30 bg-secondary/30 relative overflow-hidden border-y py-12"
 >
   <!-- Subtle texture -->
   <div class="texture-grain absolute inset-0"></div>
@@ -48,15 +48,13 @@ const allPartners = [...partners, ...partners];
 
   <!-- Marquee container -->
   <div class="marquee-wrapper relative flex overflow-hidden">
-    <div
-      class="marquee-track animate-marquee flex shrink-0 items-center gap-16 pr-16"
-    >
+    <div class="marquee-track flex shrink-0 items-center gap-16 pr-16">
       {
         allPartners.map((partner) => (
-          <div class="group flex flex-col items-center">
-            {/* Logo placeholder with text */}
-            <div class="border-border/50 bg-card/50 group-hover:border-primary/30 group-hover:bg-card flex h-16 w-40 items-center justify-center rounded border px-4 transition-all duration-300">
-              <span class="text-foreground/80 group-hover:text-primary font-serif text-lg font-medium transition-colors">
+          <div class="partner-item flex flex-col items-center">
+            {/* Logo placeholder with text - fixed dimensions to prevent layout shift */}
+            <div class="border-border/50 bg-card/50 flex h-16 w-40 items-center justify-center rounded border px-4">
+              <span class="text-foreground/80 font-serif text-lg font-medium">
                 {partner.name}
               </span>
             </div>
@@ -72,58 +70,73 @@ const allPartners = [...partners, ...partners];
   </div>
 </section>
 
+<style>
+  /* Animation created via JS - this just sets up performance hints */
+  .marquee-track {
+    will-change: transform;
+  }
+
+  /* Hover effects on individual cards - only colors, no layout changes */
+  .partner-item > div {
+    transition:
+      border-color 0.3s ease,
+      background-color 0.3s ease;
+  }
+
+  .partner-item:hover > div {
+    border-color: hsl(28 65% 52% / 0.3);
+    background-color: hsl(30 12% 10%);
+  }
+
+  .partner-item > div > span {
+    transition: color 0.3s ease;
+  }
+
+  .partner-item:hover > div > span {
+    color: hsl(28 65% 52%);
+  }
+</style>
+
 <script>
-  // Smooth ease-to-stop on hover using Web Animations API
-  // Note: Astro scripts run after DOM is ready, no DOMContentLoaded needed
-  const section = document.querySelector("section:has(.marquee-wrapper)");
+  // Smooth ease-to-stop marquee using Web Animations API only (no CSS animation)
+  const section = document.querySelector(".marquee-section");
   const track = document.querySelector(".marquee-track") as HTMLElement | null;
 
   if (section && track) {
-    // Remove CSS animation class and create animation via Web Animations API
-    // This ensures getAnimations() will reliably find and control the animation
-    track.classList.remove("animate-marquee");
-
-    // Create the animation using Web Animations API
-    const marqueeAnimation = track.animate(
-      [{ transform: "translateX(0%)" }, { transform: "translateX(-50%)" }],
-      {
-        duration: 30000,
-        iterations: Infinity,
-        easing: "linear",
-      },
+    // Create animation exclusively via JS - no CSS animation to conflict
+    const animation = track.animate(
+      [{ transform: "translateX(0)" }, { transform: "translateX(-50%)" }],
+      { duration: 30000, iterations: Infinity, easing: "linear" },
     );
 
-    let currentRate = 1;
-    let targetRate = 1;
-    let rafId: number | null = null;
+    let targetSpeed = 1;
+    let currentSpeed = 1;
+    let frameId: number | null = null;
 
-    const easeRate = () => {
-      // Quick ease - lerp factor of 0.15 for fast but smooth deceleration
-      const lerpFactor = 0.15;
-      currentRate += (targetRate - currentRate) * lerpFactor;
+    const updateSpeed = () => {
+      // Ease towards target (0.12 = ~200ms to stop/start)
+      currentSpeed += (targetSpeed - currentSpeed) * 0.12;
 
-      // Clamp very small values to target to prevent endless loop
-      if (Math.abs(currentRate - targetRate) < 0.001) {
-        currentRate = targetRate;
+      // Snap when close enough
+      if (Math.abs(currentSpeed - targetSpeed) < 0.001) {
+        currentSpeed = targetSpeed;
+        animation.playbackRate = currentSpeed;
+        frameId = null;
+        return;
       }
 
-      marqueeAnimation.playbackRate = currentRate;
-
-      if (currentRate !== targetRate) {
-        rafId = requestAnimationFrame(easeRate);
-      }
+      animation.playbackRate = currentSpeed;
+      frameId = requestAnimationFrame(updateSpeed);
     };
 
     section.addEventListener("mouseenter", () => {
-      targetRate = 0;
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(easeRate);
+      targetSpeed = 0;
+      if (!frameId) frameId = requestAnimationFrame(updateSpeed);
     });
 
     section.addEventListener("mouseleave", () => {
-      targetRate = 1;
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(easeRate);
+      targetSpeed = 1;
+      if (!frameId) frameId = requestAnimationFrame(updateSpeed);
     });
   }
 </script>
