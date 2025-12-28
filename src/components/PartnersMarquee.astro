@@ -71,9 +71,24 @@ const allPartners = [...partners, ...partners];
 </section>
 
 <style>
-  /* Animation created via JS - this just sets up performance hints */
+  /* Pure CSS marquee - most reliable cross-browser solution */
   .marquee-track {
+    animation: marquee-scroll 30s linear infinite;
     will-change: transform;
+  }
+
+  /* Instant pause on hover - no JS means no timing bugs */
+  .marquee-section:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
   }
 
   /* Hover effects on individual cards - only colors, no layout changes */
@@ -96,47 +111,3 @@ const allPartners = [...partners, ...partners];
     color: hsl(28 65% 52%);
   }
 </style>
-
-<script>
-  // Smooth ease-to-stop marquee using Web Animations API only (no CSS animation)
-  const section = document.querySelector(".marquee-section");
-  const track = document.querySelector(".marquee-track") as HTMLElement | null;
-
-  if (section && track) {
-    // Create animation exclusively via JS - no CSS animation to conflict
-    const animation = track.animate(
-      [{ transform: "translateX(0)" }, { transform: "translateX(-50%)" }],
-      { duration: 30000, iterations: Infinity, easing: "linear" },
-    );
-
-    let targetSpeed = 1;
-    let currentSpeed = 1;
-    let frameId: number | null = null;
-
-    const updateSpeed = () => {
-      // Ease towards target (0.12 = ~200ms to stop/start)
-      currentSpeed += (targetSpeed - currentSpeed) * 0.12;
-
-      // Snap when close enough
-      if (Math.abs(currentSpeed - targetSpeed) < 0.001) {
-        currentSpeed = targetSpeed;
-        animation.playbackRate = currentSpeed;
-        frameId = null;
-        return;
-      }
-
-      animation.playbackRate = currentSpeed;
-      frameId = requestAnimationFrame(updateSpeed);
-    };
-
-    section.addEventListener("mouseenter", () => {
-      targetSpeed = 0;
-      if (!frameId) frameId = requestAnimationFrame(updateSpeed);
-    });
-
-    section.addEventListener("mouseleave", () => {
-      targetSpeed = 1;
-      if (!frameId) frameId = requestAnimationFrame(updateSpeed);
-    });
-  }
-</script>
