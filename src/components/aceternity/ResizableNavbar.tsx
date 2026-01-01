@@ -210,89 +210,117 @@ const MobileNavbar = ({
   // When menu is open, always show dark theme
   const showDarkTheme = visible || isOpen;
 
-  return (
-    <motion.div
-      animate={{
-        backdropFilter: "blur(12px)",
-        boxShadow: showDarkTheme
-          ? "0 4px 30px rgba(0, 0, 0, 0.3)"
-          : "0 4px 20px rgba(0, 0, 0, 0.08)",
-        width: visible ? "95%" : "100%",
-        borderRadius: visible ? "16px" : "0px",
-        y: visible ? 10 : 0,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 200,
-        damping: 50,
-      }}
-      className={cn(
-        "relative z-50 mx-auto flex w-full flex-col transition-colors duration-300 lg:hidden",
-        showDarkTheme
-          ? "border border-slate-700/50 bg-slate-900/95"
-          : "bg-bone/90 border-line/50 border",
-      )}
-    >
-      {/* Header */}
-      <div className="flex w-full items-center justify-between px-4 py-3">
-        <Logo isScrolled={showDarkTheme} />
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className={cn(
-            "p-2 transition-colors",
-            showDarkTheme
-              ? "text-slate-300 hover:text-white"
-              : "text-graphite hover:text-ink",
-          )}
-        >
-          {isOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
-        </button>
-      </div>
+  // Prevent body scroll when menu is open
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
 
-      {/* Mobile Menu */}
+  return (
+    <>
+      {/* Backdrop overlay - tap to close */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-hidden border-t border-slate-700/50"
-          >
-            <div className="flex flex-col gap-1 px-4 py-4">
-              {navItems.map((item, idx) => (
-                <a
-                  key={`mobile-nav-${idx}`}
-                  href={item.link}
-                  onClick={() => setIsOpen(false)}
-                  className="rounded-lg px-4 py-3 text-base font-medium text-slate-300 transition-colors hover:bg-slate-800/50 hover:text-white"
-                >
-                  {item.name}
-                </a>
-              ))}
-
-              {/* Mobile CTA */}
-              <div className="mt-4 flex flex-col gap-3 border-t border-slate-700/50 pt-4">
-                <a
-                  href="tel:+15034707007"
-                  className="flex items-center justify-center gap-2 rounded-lg bg-slate-800/50 px-4 py-3 text-base font-medium text-slate-300 transition-colors hover:text-white"
-                >
-                  <IconPhone size={20} />
-                  (503) 470-7007
-                </a>
-                <a
-                  href="#contact"
-                  onClick={() => setIsOpen(false)}
-                  className="text-chalk bg-cedar hover:bg-rust flex items-center justify-center rounded-lg px-4 py-3 text-base font-semibold transition-colors"
-                >
-                  Get Free Quote
-                </a>
-              </div>
-            </div>
-          </motion.div>
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+          />
         )}
       </AnimatePresence>
-    </motion.div>
+
+      <motion.div
+        animate={{
+          backdropFilter: "blur(12px)",
+          boxShadow: showDarkTheme
+            ? "0 4px 30px rgba(0, 0, 0, 0.3)"
+            : "0 4px 20px rgba(0, 0, 0, 0.08)",
+          width: visible ? "95%" : "100%",
+          borderRadius: visible ? "16px" : "0px",
+          y: visible ? 10 : 0,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 50,
+        }}
+        className={cn(
+          "relative z-50 mx-auto flex w-full flex-col transition-colors duration-300 lg:hidden",
+          showDarkTheme
+            ? "border border-slate-700/50 bg-slate-900/95"
+            : "bg-bone/90 border-line/50 border",
+        )}
+      >
+        {/* Header */}
+        <div className="flex w-full items-center justify-between px-4 py-3">
+          <Logo isScrolled={showDarkTheme} />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className={cn(
+              "p-2 transition-colors",
+              showDarkTheme
+                ? "text-slate-300 hover:text-white"
+                : "text-graphite hover:text-ink",
+            )}
+          >
+            {isOpen ? <IconX size={24} /> : <IconMenu2 size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden border-t border-slate-700/50"
+            >
+              <div className="flex flex-col gap-1 px-4 py-4">
+                {navItems.map((item, idx) => (
+                  <a
+                    key={`mobile-nav-${idx}`}
+                    href={item.link}
+                    onClick={() => setIsOpen(false)}
+                    className="rounded-lg px-4 py-3 text-base font-medium text-slate-300 transition-colors hover:bg-slate-800/50 hover:text-white"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+
+                {/* Mobile CTA */}
+                <div className="mt-4 flex flex-col gap-3 border-t border-slate-700/50 pt-4">
+                  <a
+                    href="tel:+15034707007"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center justify-center gap-2 rounded-lg bg-slate-800/50 px-4 py-3 text-base font-medium text-slate-300 transition-colors hover:text-white"
+                  >
+                    <IconPhone size={20} />
+                    (503) 470-7007
+                  </a>
+                  <a
+                    href="#contact"
+                    onClick={() => setIsOpen(false)}
+                    className="text-chalk bg-cedar hover:bg-rust flex items-center justify-center rounded-lg px-4 py-3 text-base font-semibold transition-colors"
+                  >
+                    Get Free Quote
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </>
   );
 };
 
