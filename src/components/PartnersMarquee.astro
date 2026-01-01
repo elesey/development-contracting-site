@@ -1,33 +1,12 @@
 ---
-interface Partner {
-  name: string;
-  tagline?: string;
-}
-
-const partners: Partner[] = [
-  { name: "Kohler", tagline: "Kitchen & Bath" },
-  { name: "Moen", tagline: "Fixtures" },
-  { name: "Delta", tagline: "Faucets" },
-  { name: "American Standard", tagline: "Plumbing" },
-  { name: "Toto", tagline: "Toilets" },
-  { name: "Andersen", tagline: "Windows" },
-  { name: "Pella", tagline: "Doors & Windows" },
-  { name: "Milgard", tagline: "Windows" },
-  { name: "James Hardie", tagline: "Siding" },
-  { name: "GAF", tagline: "Roofing" },
-  { name: "CertainTeed", tagline: "Building Materials" },
-  { name: "Shaw Floors", tagline: "Flooring" },
-];
-
-// Duplicate for seamless loop
-const allPartners = [...partners, ...partners];
+import LogoMarquee from "./LogoMarquee";
 ---
 
 <section
   class="marquee-section border-border/30 bg-secondary/30 relative overflow-hidden border-y py-12"
 >
   <!-- Subtle texture -->
-  <div class="texture-grain absolute inset-0"></div>
+  <div class="texture-grain absolute inset-0 opacity-30"></div>
 
   <!-- Fade edges -->
   <div
@@ -40,74 +19,19 @@ const allPartners = [...partners, ...partners];
   </div>
 
   <!-- Header -->
-  <div class="container mx-auto mb-8 px-6 text-center">
+  <div class="container mx-auto mb-4 px-6 text-center">
     <span class="text-muted-foreground text-xs tracking-[0.3em] uppercase">
       Trusted Partners & Brands We Work With
     </span>
   </div>
 
-  <!-- Marquee container -->
-  <div class="marquee-wrapper relative flex overflow-hidden">
-    <div class="marquee-track flex shrink-0 items-center gap-16 pr-16">
-      {
-        allPartners.map((partner) => (
-          <div class="partner-item flex flex-col items-center">
-            {/* Logo placeholder with text - fixed dimensions to prevent layout shift */}
-            <div class="border-border/50 bg-card/50 flex h-16 w-44 items-center justify-center rounded border px-4">
-              <span class="text-foreground/80 text-center font-serif text-base leading-tight font-medium">
-                {partner.name}
-              </span>
-            </div>
-            {partner.tagline && (
-              <span class="text-muted-foreground/60 mt-2 text-[10px] tracking-widest uppercase">
-                {partner.tagline}
-              </span>
-            )}
-          </div>
-        ))
-      }
-    </div>
-  </div>
+  <!-- Interactive Logo Marquee -->
+  <LogoMarquee client:visible />
 </section>
 
 <style>
-  /* Pure CSS marquee - most reliable cross-browser solution */
-  .marquee-track {
-    animation: marquee-scroll 30s linear infinite;
-    will-change: transform;
-  }
-
-  /* Instant pause on hover - no JS means no timing bugs */
-  .marquee-section:hover .marquee-track {
-    animation-play-state: paused;
-  }
-
-  @keyframes marquee-scroll {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  /* Hover effects on individual cards - only colors, no layout changes */
-  .partner-item > div {
-    transition:
-      border-color 0.3s ease,
-      background-color 0.3s ease;
-  }
-
-  .partner-item:hover > div {
-    border-color: hsl(28 65% 52% / 0.3);
-    background-color: hsl(30 12% 10%);
-  }
-
-  .partner-item > div > span {
-    transition: color 0.3s ease;
-  }
-
-  .partner-item:hover > div > span {
-    color: hsl(28 65% 52%);
+  .texture-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    pointer-events: none;
   }
 </style>

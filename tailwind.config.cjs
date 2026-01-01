@@ -45,6 +45,14 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // Custom theme colors for v2
+        bone: "#F7F3EF",
+        chalk: "#FFFCF8",
+        ink: "#121212",
+        graphite: "#2B2B2B",
+        line: "#D8D2C8",
+        cedar: "#C1733F",
+        rust: "#AF6535",
       },
       borderRadius: {
         lg: "var(--radius)",

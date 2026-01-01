@@ -1,0 +1,391 @@
+---
+/**
+ * BackgroundPattern - Architectural texture patterns
+ *
+ * Provides various subtle background patterns for visual texture:
+ * - blueprint: Construction blueprint-style lines
+ * - dots: Subtle dot grid pattern
+ * - grid: Technical grid lines
+ * - noise: Film grain texture overlay
+ * - diagonal: Diagonal construction lines
+ * - drafting: Technical drawing style with dimension lines and crosshairs
+ * - construction: Construction document style with center lines and markers
+ */
+
+interface Props {
+  variant:
+    | "blueprint"
+    | "dots"
+    | "grid"
+    | "noise"
+    | "diagonal"
+    | "drafting"
+    | "construction";
+  opacity?: number;
+  size?: number;
+  color?: string;
+  class?: string;
+}
+
+const {
+  variant,
+  opacity = 0.1,
+  size = 24,
+  color = "currentColor",
+  class: className = "",
+} = Astro.props;
+---
+
+{
+  variant === "blueprint" && (
+    <div
+      class:list={[
+        "pointer-events-none absolute inset-0 overflow-hidden",
+        className,
+      ]}
+      style={`opacity: ${opacity};`}
+    >
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern
+            id="blueprint-pattern"
+            width={size}
+            height={size}
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d={`M ${size} 0 L 0 0 0 ${size}`}
+              fill="none"
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="1"
+              stroke-opacity="0.5"
+            />
+            <circle
+              cx={size / 2}
+              cy={size / 2}
+              r="1.5"
+              fill="var(--color-cedar, #C1733F)"
+              fill-opacity="0.4"
+            />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#blueprint-pattern)" />
+      </svg>
+    </div>
+  )
+}
+
+{
+  variant === "dots" && (
+    <div
+      class:list={[
+        "pointer-events-none absolute inset-0 overflow-hidden",
+        className,
+      ]}
+      style={`opacity: ${opacity};`}
+    >
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern
+            id="dots-pattern"
+            width={size}
+            height={size}
+            patternUnits="userSpaceOnUse"
+          >
+            <circle
+              cx={size / 2}
+              cy={size / 2}
+              r="2"
+              fill="var(--color-cedar, #C1733F)"
+              fill-opacity="0.4"
+            />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#dots-pattern)" />
+      </svg>
+    </div>
+  )
+}
+
+{
+  variant === "grid" && (
+    <div
+      class:list={[
+        "pointer-events-none absolute inset-0 overflow-hidden",
+        className,
+      ]}
+      style={`opacity: ${opacity};`}
+    >
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern
+            id="grid-pattern"
+            width={size}
+            height={size}
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d={`M ${size} 0 L 0 0 0 ${size}`}
+              fill="none"
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="1"
+              stroke-opacity="0.5"
+            />
+          </pattern>
+          {/* Larger grid overlay */}
+          <pattern
+            id="grid-pattern-large"
+            width={size * 4}
+            height={size * 4}
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d={`M ${size * 4} 0 L 0 0 0 ${size * 4}`}
+              fill="none"
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="2"
+              stroke-opacity="0.6"
+            />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+        <rect
+          width="100%"
+          height="100%"
+          fill="url(#grid-pattern-large)"
+          opacity="0.7"
+        />
+      </svg>
+    </div>
+  )
+}
+
+{
+  variant === "noise" && (
+    <div
+      class:list={[
+        "pointer-events-none absolute inset-0 overflow-hidden",
+        className,
+      ]}
+      style={`opacity: ${opacity};`}
+    >
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="noise-filter">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.8"
+              numOctaves="4"
+              seed="15"
+              stitchTiles="stitch"
+            />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+        </defs>
+        <rect width="100%" height="100%" filter="url(#noise-filter)" />
+      </svg>
+    </div>
+  )
+}
+
+{
+  variant === "diagonal" && (
+    <div
+      class:list={[
+        "pointer-events-none absolute inset-0 overflow-hidden",
+        className,
+      ]}
+      style={`opacity: ${opacity};`}
+    >
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern
+            id="diagonal-pattern"
+            width={size}
+            height={size}
+            patternUnits="userSpaceOnUse"
+            patternTransform="rotate(45)"
+          >
+            <line
+              x1="0"
+              y1="0"
+              x2="0"
+              y2={size}
+              stroke="var(--color-chalk, #F5F4F0)"
+              stroke-width="1"
+              stroke-opacity="0.5"
+            />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#diagonal-pattern)" />
+      </svg>
+    </div>
+  )
+}
+
+{
+  variant === "drafting" && (
+    <div
+      class:list={[
+        "pointer-events-none absolute inset-0 overflow-hidden",
+        className,
+      ]}
+      style={`opacity: ${opacity};`}
+    >
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          {/* Base grid */}
+          <pattern
+            id="drafting-grid"
+            width={size}
+            height={size}
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d={`M ${size} 0 L 0 0 0 ${size}`}
+              fill="none"
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="0.5"
+              stroke-opacity="0.2"
+            />
+          </pattern>
+
+          {/* Dimension marks (every 4 cells) */}
+          <pattern
+            id="drafting-dimension"
+            width={size * 4}
+            height={size * 4}
+            patternUnits="userSpaceOnUse"
+          >
+            {/* Crosshair at center */}
+            <circle
+              cx={size * 2}
+              cy={size * 2}
+              r="3"
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="0.75"
+              fill="none"
+              stroke-opacity="0.4"
+            />
+            <line
+              x1={size * 2 - 8}
+              y1={size * 2}
+              x2={size * 2 + 8}
+              y2={size * 2}
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="0.5"
+              stroke-opacity="0.3"
+            />
+            <line
+              x1={size * 2}
+              y1={size * 2 - 8}
+              x2={size * 2}
+              y2={size * 2 + 8}
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="0.5"
+              stroke-opacity="0.3"
+            />
+
+            {/* Tick marks on edges */}
+            <line
+              x1="0"
+              y1="0"
+              x2="6"
+              y2="0"
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="0.75"
+              stroke-opacity="0.5"
+            />
+            <line
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="6"
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="0.75"
+              stroke-opacity="0.5"
+            />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#drafting-grid)" />
+        <rect width="100%" height="100%" fill="url(#drafting-dimension)" />
+      </svg>
+    </div>
+  )
+}
+
+{
+  variant === "construction" && (
+    <div
+      class:list={[
+        "pointer-events-none absolute inset-0 overflow-hidden",
+        className,
+      ]}
+      style={`opacity: ${opacity};`}
+    >
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          {/* Construction document style pattern with center lines */}
+          <pattern
+            id="construction-pattern"
+            width={size * 6}
+            height={size * 6}
+            patternUnits="userSpaceOnUse"
+          >
+            {/* Center line dash pattern (long-short-long) */}
+            <line
+              x1="0"
+              y1={size * 3}
+              x2={size * 6}
+              y2={size * 3}
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="0.75"
+              stroke-dasharray="24 4 8 4"
+              stroke-opacity="0.35"
+            />
+            <line
+              x1={size * 3}
+              y1="0"
+              x2={size * 3}
+              y2={size * 6}
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="0.75"
+              stroke-dasharray="24 4 8 4"
+              stroke-opacity="0.35"
+            />
+
+            {/* Construction marks at corners */}
+            <g
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="0.5"
+              stroke-opacity="0.4"
+            >
+              {/* Top-left L bracket */}
+              <path d="M 0 12 L 0 0 L 12 0" fill="none" />
+              {/* Dimension tick */}
+              <line x1={size * 1.5} y1="0" x2={size * 1.5} y2="4" />
+              <line x1={size * 3} y1="0" x2={size * 3} y2="6" />
+              <line x1={size * 4.5} y1="0" x2={size * 4.5} y2="4" />
+              {/* Side ticks */}
+              <line x1="0" y1={size * 1.5} x2="4" y2={size * 1.5} />
+              <line x1="0" y1={size * 3} x2="6" y2={size * 3} />
+              <line x1="0" y1={size * 4.5} x2="4" y2={size * 4.5} />
+            </g>
+
+            {/* Section marker circle */}
+            <circle
+              cx={size * 3}
+              cy={size * 3}
+              r="8"
+              stroke="var(--color-cedar, #C1733F)"
+              stroke-width="0.75"
+              fill="none"
+              stroke-opacity="0.3"
+            />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#construction-pattern)" />
+      </svg>
+    </div>
+  )
+}

@@ -1,122 +1,110 @@
 ---
-import { HeroHighlight, Highlight } from "./aceternity/HeroHighlight";
 import { TextGenerateEffect } from "./aceternity/TextGenerateEffect";
 import { SpotlightButton } from "./aceternity/SpotlightButton";
-
-const tagline = "Building the Future, Restoring the Past";
-const subtitle =
-  "Expert residential and commercial renovation services. From concept to completion, we transform spaces with precision, care, and uncompromising quality.";
+import heroImage from "../assets/Gemini_Generated_Image_chqjxychqjxychqj.png";
 ---
 
-<section class="relative min-h-screen overflow-hidden" id="hero">
-  <!-- Hero Highlight Background Effect (React Island) - Now wraps everything for proper cursor tracking -->
-  <HeroHighlight
-    client:load
-    containerClassName="absolute inset-0"
-    className="h-full w-full"
+<section
+  class="relative flex min-h-screen items-center overflow-hidden"
+  id="hero"
+>
+  <!-- Base layered gradient background -->
+  <div
+    class="from-background via-background to-secondary/20 absolute inset-0 bg-gradient-to-br"
   >
-    <!-- Empty div required by component -->
-    <div></div>
-  </HeroHighlight>
-
-  <!-- Decorative elements - pointer-events-none so they don't block -->
-  <div class="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
-    <!-- Textured background layer -->
-    <div class="texture-noise absolute inset-0"></div>
-
-    <!-- Gradient overlay -->
-    <div
-      class="from-background/80 via-background/60 to-background/80 absolute inset-0 bg-gradient-to-b"
-    >
-    </div>
-
-    <!-- Grid pattern -->
-    <div
-      class="absolute inset-0 opacity-[0.02]"
-      style="background-image: linear-gradient(hsl(var(--color-primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--color-primary)) 1px, transparent 1px); background-size: 100px 100px;"
-    >
-    </div>
-
-    <!-- Large decorative circles -->
-    <div
-      class="border-primary/5 absolute -top-64 -right-64 h-[800px] w-[800px] rounded-full border"
-    >
-    </div>
-    <div
-      class="border-primary/10 absolute -top-48 -right-48 h-[600px] w-[600px] rounded-full border"
-    >
-    </div>
-
-    <!-- Accent lines -->
-    <div
-      class="via-primary/20 absolute top-1/3 left-0 h-px w-1/3 bg-gradient-to-r from-transparent to-transparent"
-    >
-    </div>
-    <div
-      class="via-primary/20 absolute top-2/3 right-0 h-px w-1/4 bg-gradient-to-l from-transparent to-transparent"
-    >
-    </div>
   </div>
 
-  <!-- Content - positioned above decorative elements but allows pointer events to pass through gaps -->
+  <!-- Architectural blueprint grid - primary layer -->
+  <div class="hero-blueprint-primary absolute inset-0"></div>
+
+  <!-- Secondary finer grid overlay -->
+  <div class="hero-blueprint-fine absolute inset-0"></div>
+
+  <!-- Diagonal architectural accent lines -->
+  <div class="hero-diagonal-lines absolute inset-0"></div>
+
+  <!-- Warm ambient glows - enhanced -->
   <div
-    class="relative z-[2] container mx-auto flex min-h-screen flex-col justify-center px-6 pt-24"
+    class="bg-gradient-radial from-primary/[0.06] via-primary/[0.02] absolute top-[-10%] right-[-5%] h-[80%] w-[80%] to-transparent"
   >
-    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-      <!-- Text Content -->
-      <div class="max-w-2xl">
-        <!-- Badge -->
+  </div>
+  <div
+    class="bg-gradient-radial from-accent/[0.04] absolute bottom-[-15%] left-[10%] h-[60%] w-[60%] via-transparent to-transparent"
+  >
+  </div>
+  <div
+    class="bg-gradient-radial from-primary/[0.025] absolute top-[30%] left-[-10%] h-[50%] w-[40%] via-transparent to-transparent"
+  >
+  </div>
+
+  <!-- Soft vignette for depth -->
+  <div class="hero-vignette-bg absolute inset-0"></div>
+
+  <!-- Halftone dot pattern texture -->
+  <div class="hero-halftone absolute inset-0"></div>
+
+  <!-- Fine grain texture overlay -->
+  <div class="hero-grain absolute inset-0"></div>
+
+  <!-- Top edge fade for navbar transition -->
+  <div
+    class="from-background via-background/50 absolute inset-x-0 top-0 h-40 bg-gradient-to-b to-transparent"
+  >
+  </div>
+
+  <!-- Main Content Grid -->
+  <div class="relative z-10 container mx-auto px-6 pt-28 pb-16 lg:px-12">
+    <div
+      class="grid min-h-[calc(100vh-7rem)] items-center gap-12 lg:grid-cols-2 lg:gap-8"
+    >
+      <!-- Left Column - Text Content -->
+      <div class="order-2 text-center lg:order-1 lg:text-left">
+        <!-- Badge / Tagline -->
         <div
-          class="animate-fade-in-up border-primary/20 bg-primary/5 mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-1.5"
+          class="bg-secondary/40 border-border/30 animate-fade-in-up mb-8 inline-flex items-center gap-3 rounded border px-4 py-2 backdrop-blur-sm"
+          style="animation-delay: 0ms;"
         >
           <span class="bg-primary h-1.5 w-1.5 animate-pulse rounded-full"
           ></span>
-          <span class="text-primary text-xs tracking-widest uppercase"
-            >Licensed • Bonded • Insured</span
+          <span
+            class="text-muted-foreground text-[10px] font-medium tracking-[0.25em] uppercase"
+          >
+            Licensed in Oregon & Washington
+          </span>
+          <span class="text-border">|</span>
+          <span class="text-muted-foreground/70 font-mono text-[10px]"
+            >CCB# 221238</span
           >
         </div>
 
-        <!-- Main headline -->
+        <!-- Main Headline -->
         <h1
-          class="animate-fade-in-up font-serif text-4xl leading-tight font-medium tracking-tight delay-100 sm:text-5xl md:text-6xl lg:text-7xl"
+          class="animate-fade-in-up mb-6 font-serif text-4xl leading-[1.08] font-medium tracking-tight md:text-5xl lg:text-[3.5rem] xl:text-6xl"
+          style="animation-delay: 100ms;"
         >
-          <span class="text-foreground">Building the</span>
+          <span class="text-foreground">Building Excellence,</span>
           <br />
-          <Highlight client:visible className="text-foreground">
-            Future
-          </Highlight>
-          <span class="text-muted-foreground">,</span>
-          <br />
-          <span class="text-foreground">Restoring the</span>
-          <br />
-          <span class="text-gradient-copper">Past</span>
+          <span class="text-gradient-copper">Restoring Dreams.</span>
         </h1>
 
-        <!-- Subtitle with text generate effect -->
-        <div class="animate-fade-in-up mt-8 max-w-lg delay-200">
+        <!-- Subtitle -->
+        <div class="animate-fade-in-up" style="animation-delay: 200ms;">
           <TextGenerateEffect
             client:visible
-            words={subtitle}
-            className="text-muted-foreground text-lg"
+            words="Expert commercial and residential renovation services. From restoration to remodels, we deliver exceptional craftsmanship."
+            className="text-muted-foreground mx-auto max-w-xl text-base leading-relaxed md:text-lg lg:mx-0"
           />
         </div>
 
-        <!-- CTAs -->
+        <!-- Trust Indicators -->
         <div
-          class="animate-fade-in-up mt-10 flex flex-col gap-4 delay-300 sm:flex-row sm:items-center"
+          class="animate-fade-in-up mt-8 flex flex-wrap items-center justify-center gap-6 lg:justify-start"
+          style="animation-delay: 300ms;"
         >
-          <SpotlightButton client:visible href="#contact">
-            Get Free Estimate
-          </SpotlightButton>
-
-          <a
-            href="/residential"
-            class="group text-muted-foreground hover:text-foreground inline-flex items-center gap-2 px-6 py-4 text-sm tracking-widest uppercase transition-colors"
-          >
-            <span>View Our Work</span>
+          <div class="text-muted-foreground flex items-center gap-2 text-sm">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-4 w-4 transition-transform group-hover:translate-x-1"
+              class="text-primary h-4 w-4"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -125,118 +113,156 @@ const subtitle =
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+              ></path>
             </svg>
-          </a>
+            <span>Licensed & Insured</span>
+          </div>
+          <div class="text-muted-foreground flex items-center gap-2 text-sm">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="text-primary h-4 w-4"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+              ></path>
+            </svg>
+            <span>5.0 Google Rating</span>
+          </div>
+          <div class="text-muted-foreground flex items-center gap-2 text-sm">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="text-primary h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>10+ Years Experience</span>
+          </div>
         </div>
 
-        <!-- Stats row -->
+        <!-- CTA Buttons -->
         <div
-          class="animate-fade-in-up border-border/50 mt-16 grid grid-cols-3 gap-8 border-t pt-8 delay-400"
+          class="animate-fade-in-up mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start"
+          style="animation-delay: 400ms;"
         >
-          <div>
-            <div class="text-primary font-serif text-3xl font-medium">200+</div>
-            <div
-              class="text-muted-foreground mt-1 text-xs tracking-wider uppercase"
+          <SpotlightButton client:visible href="#contact">
+            Get a Free Estimate
+          </SpotlightButton>
+
+          <a
+            href="tel:+15034707007"
+            class="group border-border/40 bg-card/30 text-foreground hover:border-primary/40 hover:bg-card/50 relative flex items-center gap-3 rounded border px-7 py-3.5 text-sm font-medium tracking-wide backdrop-blur-sm transition-all duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="text-primary h-4 w-4 transition-transform group-hover:scale-110"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.5"
             >
-              Projects
-            </div>
-          </div>
-          <div>
-            <div class="text-primary font-serif text-3xl font-medium">10+</div>
-            <div
-              class="text-muted-foreground mt-1 text-xs tracking-wider uppercase"
-            >
-              Years Exp.
-            </div>
-          </div>
-          <div>
-            <div class="text-primary font-serif text-3xl font-medium">5★</div>
-            <div
-              class="text-muted-foreground mt-1 text-xs tracking-wider uppercase"
-            >
-              Reviews
-            </div>
-          </div>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+              ></path>
+            </svg>
+            <span>(503) 470-7007</span>
+          </a>
         </div>
       </div>
 
-      <!-- Hero Image Placeholder -->
-      <div class="relative hidden lg:block">
-        <div class="relative aspect-[4/5] overflow-hidden rounded-sm">
-          <!-- Placeholder with construction aesthetic -->
-          <div
-            class="from-secondary via-secondary/80 to-muted absolute inset-0 bg-gradient-to-br"
-          >
-          </div>
-
-          <!-- Decorative overlay -->
-          <div class="texture-brushed absolute inset-0"></div>
-
-          <!-- Blueprint-style grid -->
-          <div
-            class="absolute inset-0 opacity-10"
-            style="background-image: linear-gradient(hsl(var(--color-primary)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--color-primary)) 1px, transparent 1px); background-size: 20px 20px;"
-          >
-          </div>
-
-          <!-- Placeholder text -->
-          <div
-            class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
-          >
-            <div class="border-primary/30 mb-4 h-16 w-16 rounded border">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="text-primary/50 h-full w-full p-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="1"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"
-                ></path>
-              </svg>
-            </div>
-            <span
-              class="text-muted-foreground text-sm tracking-widest uppercase"
-              >Hero Image</span
-            >
-            <span class="text-muted-foreground/60 mt-1 text-xs"
-              >Placeholder</span
-            >
-          </div>
-
-          <!-- Frame accents -->
-          <div
-            class="from-primary/50 absolute top-0 left-0 h-24 w-px bg-gradient-to-b to-transparent"
-          >
-          </div>
-          <div
-            class="from-primary/50 absolute top-0 left-0 h-px w-24 bg-gradient-to-r to-transparent"
-          >
-          </div>
-          <div
-            class="from-primary/50 absolute right-0 bottom-0 h-24 w-px bg-gradient-to-t to-transparent"
-          >
-          </div>
-          <div
-            class="from-primary/50 absolute right-0 bottom-0 h-px w-24 bg-gradient-to-l to-transparent"
-          >
-          </div>
-        </div>
-
-        <!-- Floating badge -->
+      <!-- Right Column - Hero Image Showcase -->
+      <div
+        class="animate-fade-in-up order-1 flex items-center justify-center lg:order-2 lg:justify-end"
+        style="animation-delay: 150ms;"
+      >
         <div
-          class="border-primary/30 bg-card/90 absolute -bottom-6 -left-6 rounded border px-6 py-4 shadow-xl backdrop-blur-sm"
+          class="hero-image-frame relative w-full max-w-[600px] lg:max-w-none"
         >
-          <div class="text-muted-foreground text-xs tracking-widest uppercase">
-            Servicing
+          <!-- Decorative frame elements -->
+          <div
+            class="border-primary/40 absolute -top-3 -left-3 h-12 w-12 border-t-2 border-l-2"
+          >
           </div>
-          <div class="text-foreground mt-1 font-serif text-lg font-medium">
-            Oregon & Washington
+          <div
+            class="border-primary/40 absolute -top-3 -right-3 h-12 w-12 border-t-2 border-r-2"
+          >
+          </div>
+          <div
+            class="border-primary/40 absolute -bottom-3 -left-3 h-12 w-12 border-b-2 border-l-2"
+          >
+          </div>
+          <div
+            class="border-primary/40 absolute -right-3 -bottom-3 h-12 w-12 border-r-2 border-b-2"
+          >
+          </div>
+
+          <!-- Inner frame with image -->
+          <div
+            class="border-border/20 from-secondary/30 to-background relative overflow-hidden rounded-sm border bg-gradient-to-br"
+          >
+            <!-- Blueprint grid underlay -->
+            <div class="hero-blueprint-grid absolute inset-0 opacity-30"></div>
+
+            <!-- The actual image -->
+            <div
+              class="hero-image-wrapper relative aspect-[16/10] overflow-hidden"
+            >
+              <img
+                src={heroImage.src}
+                alt="Custom home design on architectural blueprints"
+                class="h-full w-full object-cover object-center"
+                width="2720"
+                height="1568"
+                loading="eager"
+              />
+              <!-- Subtle vignette overlay -->
+              <div class="hero-vignette absolute inset-0"></div>
+              <!-- Bottom gradient fade -->
+              <div
+                class="from-background/80 absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t to-transparent"
+              >
+              </div>
+            </div>
+
+            <!-- Image caption bar -->
+            <div
+              class="bg-secondary/40 border-border/20 relative border-t px-4 py-3 backdrop-blur-sm"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="bg-primary/60 h-2 w-2 animate-pulse rounded-full">
+                  </div>
+                  <span
+                    class="text-muted-foreground text-[10px] tracking-[0.2em] uppercase"
+                    >Custom Design & Build</span
+                  >
+                </div>
+                <span class="text-muted-foreground/50 font-mono text-[10px]"
+                  >Portland, OR</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating accent elements -->
+          <div
+            class="via-primary/30 absolute top-1/4 -right-2 hidden h-16 w-px bg-gradient-to-b from-transparent to-transparent lg:block"
+          >
+          </div>
+          <div
+            class="via-primary/20 absolute bottom-1/3 -left-2 hidden h-12 w-px bg-gradient-to-b from-transparent to-transparent lg:block"
+          >
           </div>
         </div>
       </div>
@@ -244,24 +270,222 @@ const subtitle =
   </div>
 
   <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 z-[2] -translate-x-1/2 animate-bounce">
-    <div
-      class="border-muted-foreground/30 flex h-10 w-6 items-start justify-center rounded-full border p-1"
+  <div
+    class="absolute bottom-6 left-1/2 flex -translate-x-1/2 animate-bounce flex-col items-center gap-1.5"
+  >
+    <span class="text-muted-foreground/40 text-[9px] tracking-[0.2em] uppercase"
+      >Scroll</span
     >
-      <div class="bg-primary/60 h-2 w-1 rounded-full"></div>
-    </div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="text-muted-foreground/40 h-4 w-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="1"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
   </div>
 </section>
 
 <style>
-  /* Dot pattern backgrounds for HeroHighlight */
-  :global(.bg-dot-thick-neutral-800) {
-    background-image: radial-gradient(hsl(30 10% 20%) 1px, transparent 1px);
-    background-size: 16px 16px;
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  :global(.bg-dot-thick-copper) {
-    background-image: radial-gradient(hsl(28 65% 52%) 1.5px, transparent 1px);
-    background-size: 16px 16px;
+  .animate-fade-in-up {
+    animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+  }
+
+  /* Radial gradient utility */
+  .bg-gradient-radial {
+    background: radial-gradient(
+      circle,
+      var(--tw-gradient-from) 0%,
+      var(--tw-gradient-via) 50%,
+      var(--tw-gradient-to) 100%
+    );
+  }
+
+  /* Primary blueprint grid - architectural feel */
+  .hero-blueprint-primary {
+    background-image:
+      linear-gradient(hsl(28 65% 52% / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(28 65% 52% / 0.06) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(
+      ellipse 90% 80% at 60% 40%,
+      black 20%,
+      transparent 70%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 90% 80% at 60% 40%,
+      black 20%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  /* Fine blueprint grid overlay */
+  .hero-blueprint-fine {
+    background-image:
+      linear-gradient(hsl(28 65% 52% / 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(28 65% 52% / 0.025) 1px, transparent 1px);
+    background-size: 20px 20px;
+    mask-image: radial-gradient(
+      ellipse 100% 100% at 70% 30%,
+      black 0%,
+      transparent 60%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 100% 100% at 70% 30%,
+      black 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  /* Diagonal architectural accent lines */
+  .hero-diagonal-lines {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 100px,
+      hsl(28 65% 52% / 0.015) 100px,
+      hsl(28 65% 52% / 0.015) 101px
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 10%,
+      black 40%,
+      black 60%,
+      transparent 90%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 10%,
+      black 40%,
+      black 60%,
+      transparent 90%
+    );
+    pointer-events: none;
+  }
+
+  /* Background vignette for depth */
+  .hero-vignette-bg {
+    background:
+      radial-gradient(
+        ellipse 120% 100% at 50% 100%,
+        hsl(30 15% 4% / 0.4) 0%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 80% 60% at 0% 50%,
+        hsl(30 15% 4% / 0.3) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 100% 80% at 100% 20%,
+        hsl(30 15% 4% / 0.2) 0%,
+        transparent 50%
+      );
+    pointer-events: none;
+  }
+
+  /* Halftone dot pattern for texture */
+  .hero-halftone {
+    background-image: radial-gradient(
+      hsl(28 65% 52% / 0.04) 1px,
+      transparent 1px
+    );
+    background-size: 4px 4px;
+    mask-image: radial-gradient(
+      ellipse 80% 70% at 30% 60%,
+      black 0%,
+      transparent 70%
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 80% 70% at 30% 60%,
+      black 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  /* Fine grain texture */
+  .hero-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+  }
+
+  /* Blueprint grid for image underlay */
+  .hero-blueprint-grid {
+    background-image:
+      linear-gradient(hsl(28 65% 52% / 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(28 65% 52% / 0.12) 1px, transparent 1px),
+      linear-gradient(hsl(28 65% 52% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(28 65% 52% / 0.05) 1px, transparent 1px);
+    background-size:
+      60px 60px,
+      60px 60px,
+      15px 15px,
+      15px 15px;
+  }
+
+  /* Image wrapper with subtle treatment */
+  .hero-image-wrapper img {
+    filter: saturate(0.9) contrast(1.02);
+    transition:
+      filter 0.5s ease,
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hero-image-frame:hover .hero-image-wrapper img {
+    filter: saturate(1) contrast(1.05);
+    transform: scale(1.02);
+  }
+
+  /* Vignette effect */
+  .hero-vignette {
+    background: radial-gradient(
+      ellipse 80% 60% at 50% 40%,
+      transparent 40%,
+      hsl(30 15% 7% / 0.15) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Frame hover effects */
+  .hero-image-frame > div:first-of-type,
+  .hero-image-frame > div:nth-of-type(2),
+  .hero-image-frame > div:nth-of-type(3),
+  .hero-image-frame > div:nth-of-type(4) {
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hero-image-frame:hover > div:first-of-type {
+    transform: translate(-2px, -2px);
+  }
+  .hero-image-frame:hover > div:nth-of-type(2) {
+    transform: translate(2px, -2px);
+  }
+  .hero-image-frame:hover > div:nth-of-type(3) {
+    transform: translate(-2px, 2px);
+  }
+  .hero-image-frame:hover > div:nth-of-type(4) {
+    transform: translate(2px, 2px);
   }
 </style>

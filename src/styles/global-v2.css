@@ -1,0 +1,311 @@
+@import "tailwindcss";
+
+/* Solid & Subtle Theme - Warm Minimal + Construction-Credible */
+@theme {
+  /* Color palette: warm minimal with cedar accent */
+  --color-bone: #f7f3ef;
+  --color-chalk: #fffcf8;
+  --color-ink: #121212;
+  --color-graphite: #2b2b2b;
+  --color-line: #d8d2c8;
+  --color-cedar: #c1733f;
+  --color-rust: #af6535;
+
+  /* Semantic mappings */
+  --color-background: var(--color-bone);
+  --color-foreground: var(--color-ink);
+  --color-card: var(--color-chalk);
+  --color-card-foreground: var(--color-ink);
+  --color-popover: var(--color-chalk);
+  --color-popover-foreground: var(--color-ink);
+
+  /* Primary accent */
+  --color-primary: var(--color-cedar);
+  --color-primary-foreground: var(--color-chalk);
+
+  /* Secondary */
+  --color-secondary: var(--color-bone);
+  --color-secondary-foreground: var(--color-graphite);
+
+  /* Muted tones */
+  --color-muted: #e8e4de;
+  --color-muted-foreground: #6b6660;
+
+  /* Border & input */
+  --color-border: var(--color-line);
+  --color-input: var(--color-line);
+  --color-ring: var(--color-cedar);
+
+  /* Border radius - mostly square */
+  --radius: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-md: 0.125rem;
+  --radius-sm: 0.0625rem;
+
+  /* Animation */
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
+  --animate-slide-in: slide-in 0.5s ease-out forwards;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* Architectural typography - Space Grotesk for headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-ink);
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+  }
+
+  h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  /* Links */
+  a {
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  /* Selection */
+  ::selection {
+    background: var(--color-cedar);
+    color: var(--color-chalk);
+  }
+
+  /* Focus */
+  :focus-visible {
+    outline: 2px solid var(--color-cedar);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Architectural grid container */
+  .container-arch {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-arch {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-arch {
+      padding-left: 6rem;
+      padding-right: 6rem;
+    }
+  }
+
+  /* Primary button - solid ink */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background-color: var(--color-ink);
+    color: var(--color-chalk);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--color-ink);
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-graphite);
+    border-color: var(--color-graphite);
+  }
+
+  /* Secondary button - outline */
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    color: var(--color-ink);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid var(--color-line);
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-ink);
+  }
+
+  /* Section label - editorial style */
+  .section-label {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-muted-foreground);
+    margin-bottom: 1rem;
+  }
+
+  /* Divider line */
+  .divider {
+    height: 1px;
+    background-color: var(--color-line);
+    width: 100%;
+  }
+
+  /* Accent underline for links */
+  .link-accent {
+    color: var(--color-ink);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .link-accent:hover {
+    border-bottom-color: var(--color-cedar);
+  }
+}
+
+@layer utilities {
+  /* Stagger animation delays */
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+  .delay-500 {
+    animation-delay: 500ms;
+  }
+  .delay-600 {
+    animation-delay: 600ms;
+  }
+
+  /* Cedar accent text */
+  .text-cedar {
+    color: var(--color-cedar);
+  }
+
+  /* Bone background */
+  .bg-bone {
+    background-color: var(--color-bone);
+  }
+
+  /* Chalk background */
+  .bg-chalk {
+    background-color: var(--color-chalk);
+  }
+
+  /* Ink text */
+  .text-ink {
+    color: var(--color-ink);
+  }
+
+  /* Graphite text */
+  .text-graphite {
+    color: var(--color-graphite);
+  }
+
+  /* Line border */
+  .border-line {
+    border-color: var(--color-line);
+  }
+}
+
+/* Minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bone);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cedar);
+}
