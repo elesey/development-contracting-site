@@ -8,6 +8,7 @@
 import LayoutHomepage from "@/layouts/LayoutHomepage.astro";
 import StickyHeader from "@/components/StickyHeader.astro";
 import Footer from "@/components/Footer.astro";
+import BrandLogos from "@/components/BrandLogos.astro";
 import {
   company,
   licensing,
@@ -70,27 +71,95 @@ import {
               </a>
             </div>
 
-            <!-- Trust badges -->
+            <!-- Trust badges (Phase 3.5 - BBB, CCB, Licensed OR+WA, Lead-safe EPA RRP) -->
             <div class="flex flex-wrap gap-3">
-              {
-                trustBadges.map((badge) => (
-                  <span class="trust-badge">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="text-brass h-4 w-4"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    {badge.label}
-                  </span>
-                ))
-              }
+              <!-- BBB Accredited -->
+              <a
+                href={licensing.bbb.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="trust-badge"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="text-brass h-4 w-4 flex-shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="8" r="6"></circle>
+                  <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+                </svg>
+                <span>{licensing.bbb.display}</span>
+              </a>
+
+              <!-- CCB License -->
+              <a
+                href={licensing.ccb.verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="trust-badge"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="text-brass h-4 w-4 flex-shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"
+                  ></path>
+                  <path d="M14 2v4a2 2 0 0 0 2 2h4"></path>
+                  <path d="m9 15 2 2 4-4"></path>
+                </svg>
+                <span>{licensing.ccb.display}</span>
+              </a>
+
+              <!-- Licensed in OR + WA -->
+              <span class="trust-badge">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="text-brass h-4 w-4 flex-shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                <span>Licensed in OR + WA</span>
+              </span>
+
+              <!-- Lead-Safe Certified (EPA RRP) -->
+              <span class="trust-badge">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="text-brass h-4 w-4 flex-shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
+                  ></path>
+                  <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"
+                  ></path>
+                </svg>
+                <span>Lead-Safe Certified (EPA RRP)</span>
+              </span>
             </div>
           </div>
 
@@ -137,19 +206,24 @@ import {
       </div>
     </section>
 
-    <!-- Brand Marquee placeholder (Phase 4) -->
-    <section class="bg-warm-stone py-8">
+    <!-- Brand Marquee (Phase 4) - Trusted Partners -->
+    <section class="bg-warm-stone py-10 md:py-12">
       <div class="container-homepage">
-        <p
-          class="text-slate text-center text-sm font-medium tracking-wider uppercase"
-        >
-          Trusted Partners & Premium Materials
-        </p>
-        <div
-          class="border-driftwood text-slate mt-4 rounded border-2 border-dashed p-8 text-center"
-        >
-          <p class="text-sm">Brand marquee will go here (Phase 4)</p>
+        <!-- Section header -->
+        <div class="mb-6 text-center">
+          <p class="text-slate text-sm font-medium tracking-wider uppercase">
+            Trusted Partners & Premium Materials
+          </p>
+          <div class="bg-brass/40 mx-auto mt-3 h-px w-16"></div>
         </div>
+
+        <!-- Brand logo marquee -->
+        <BrandLogos />
+
+        <!-- Subtle "we work with the best" message -->
+        <p class="text-slate/70 mt-6 text-center text-xs">
+          We partner with industry-leading brands to deliver exceptional quality
+        </p>
       </div>
     </section>
 

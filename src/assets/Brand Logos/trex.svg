@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
+  <defs>
+    <style>
+      .logo-bg { fill: #8B4513; }
+      .logo-text { fill: #FFFFFF; font-family: 'Arial Black', Arial, sans-serif; font-weight: 900; font-size: 48px; letter-spacing: 4px; }
+    </style>
+  </defs>
+  <rect class="logo-bg" x="10" y="15" width="180" height="50" rx="5"/>
+  <text class="logo-text" x="50%" y="58%" text-anchor="middle" dominant-baseline="middle">TREX</text>
+</svg>

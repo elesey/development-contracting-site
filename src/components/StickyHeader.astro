@@ -2,15 +2,15 @@
 /**
  * StickyHeader Component
  *
- * Glass-style sticky header with scroll animations.
- * No utility bar - clean and minimal design.
+ * Elegant glass-style sticky header with fade edges on scroll.
+ * Clean, modern design following brand guidelines.
  */
 import { company, mainNavigation } from "@/data";
-import NavbarHeader from "./NavbarHeader";
+import ElegantNavbar from "./aceternity/ElegantNavbar";
 ---
 
 <header class="header-wrapper">
-  <NavbarHeader
+  <ElegantNavbar
     client:load
     companyName={company.name}
     phone={company.phone}

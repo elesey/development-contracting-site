@@ -60,9 +60,36 @@ export const socialLinks = [
 
 // Main navigation (priority order per spec)
 export const mainNavigation = [
-  { name: "Remodeling", href: "/remodeling", primary: true },
+  {
+    name: "Services",
+    href: "/services",
+    primary: true,
+    submenu: [
+      {
+        name: "Additions",
+        href: "/additions",
+        description: "Expand your living space",
+      },
+      {
+        name: "Remodeling",
+        href: "/remodeling",
+        description: "Transform your home",
+      },
+      {
+        name: "Restoration",
+        href: "/restoration",
+        description: "Restore what matters",
+      },
+    ],
+  },
+  { name: "About", href: "/about", primary: false },
+  { name: "Contact", href: "/contact", primary: false },
+];
+
+// Flat navigation for components that don't support submenus
+export const flatNavigation = [
   { name: "Additions", href: "/additions", primary: true },
-  { name: "Residential", href: "/residential", primary: false },
+  { name: "Remodeling", href: "/remodeling", primary: true },
   { name: "Restoration", href: "/restoration", secondary: true },
   { name: "About", href: "/about", primary: false },
   { name: "Contact", href: "/contact", primary: false },

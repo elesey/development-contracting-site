@@ -103,6 +103,8 @@
   --animate-marquee: marquee 40s linear infinite;
   --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
   --animate-fade-in: fade-in 0.5s ease-out forwards;
+  --animate-scroll: scroll var(--animation-duration, 60s)
+    var(--animation-direction, forwards) linear infinite;
 
   @keyframes accordion-down {
     from {
@@ -148,6 +150,12 @@
     }
     to {
       opacity: 1;
+    }
+  }
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.75rem));
     }
   }
 }
@@ -415,6 +423,12 @@
   }
   .delay-500 {
     animation-delay: 500ms;
+  }
+
+  /* Infinite scroll animation for marquee */
+  .animate-scroll {
+    animation: scroll var(--animation-duration, 60s)
+      var(--animation-direction, forwards) linear infinite;
   }
 }
 

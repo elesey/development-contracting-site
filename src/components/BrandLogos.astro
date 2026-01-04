@@ -1,0 +1,306 @@
+---
+/**
+ * Brand Logos Marquee
+ * Pure CSS infinite scrolling marquee using local SVG brand logos
+ * Phase 4: Brand Marquee ("Trusted by")
+ */
+
+// Import local SVG logos from assets
+import kohlerLogo from "@/assets/Brand Logos/kohler.svg";
+import moenLogo from "@/assets/Brand Logos/moen.svg";
+import deltaLogo from "@/assets/Brand Logos/delta-faucet.svg";
+import andersenLogo from "@/assets/Brand Logos/andersen-windows.svg";
+import jamesHardieLogo from "@/assets/Brand Logos/james-hardie.svg";
+import trexLogo from "@/assets/Brand Logos/trex.svg";
+import daltileLogo from "@/assets/Brand Logos/daltile.svg";
+import msiLogo from "@/assets/Brand Logos/msi.svg";
+import gafLogo from "@/assets/Brand Logos/gaf.svg";
+import shawLogo from "@/assets/Brand Logos/shaw-floors.svg";
+import benjaminMooreLogo from "@/assets/Brand Logos/benjamin-moore.svg";
+import milgardLogo from "@/assets/Brand Logos/milgard.svg";
+import americanStandardLogo from "@/assets/Brand Logos/american-standard.svg";
+
+interface Partner {
+  name: string;
+  logo: ImageMetadata;
+  tagline: string;
+  href: string;
+  scale?: number; // Scale factor for visual proportionality (1 = default)
+}
+
+const partners: Partner[] = [
+  {
+    name: "Kohler",
+    logo: kohlerLogo,
+    tagline: "Kitchen & Bath",
+    href: "/projects?brand=kohler",
+    scale: 1,
+  },
+  {
+    name: "Moen",
+    logo: moenLogo,
+    tagline: "Fixtures",
+    href: "/projects?brand=moen",
+    scale: 1,
+  },
+  {
+    name: "Delta Faucet",
+    logo: deltaLogo,
+    tagline: "Faucets",
+    href: "/projects?brand=delta",
+    scale: 1.1,
+  },
+  {
+    name: "Andersen",
+    logo: andersenLogo,
+    tagline: "Windows & Doors",
+    href: "/projects?brand=andersen",
+    scale: 1.4,
+  },
+  {
+    name: "James Hardie",
+    logo: jamesHardieLogo,
+    tagline: "Fiber Cement Siding",
+    href: "/projects?brand=james-hardie",
+    scale: 1.1,
+  },
+  {
+    name: "Trex",
+    logo: trexLogo,
+    tagline: "Decking",
+    href: "/projects?brand=trex",
+    scale: 1.0,
+  },
+  {
+    name: "GAF",
+    logo: gafLogo,
+    tagline: "Roofing",
+    href: "/projects?brand=gaf",
+    scale: 1.2,
+  },
+  {
+    name: "Shaw Floors",
+    logo: shawLogo,
+    tagline: "Flooring",
+    href: "/projects?brand=shaw-floors",
+    scale: 2.8,
+  },
+  {
+    name: "Benjamin Moore",
+    logo: benjaminMooreLogo,
+    tagline: "Premium Paint",
+    href: "/projects?brand=benjamin-moore",
+    scale: 3.0,
+  },
+  {
+    name: "Daltile",
+    logo: daltileLogo,
+    tagline: "Tile & Stone",
+    href: "/projects?brand=daltile",
+    scale: 1.0,
+  },
+  {
+    name: "MSI",
+    logo: msiLogo,
+    tagline: "Tile & Stone",
+    href: "/projects?brand=msi",
+    scale: 1.0,
+  },
+  {
+    name: "Milgard",
+    logo: milgardLogo,
+    tagline: "Windows & Doors",
+    href: "/projects?brand=milgard",
+    scale: 1,
+  },
+  {
+    name: "American Standard",
+    logo: americanStandardLogo,
+    tagline: "Plumbing Fixtures",
+    href: "/projects?brand=american-standard",
+    scale: 1.15,
+  },
+];
+
+// Duplicate for seamless loop
+const allPartners = [...partners, ...partners];
+---
+
+<div class="brand-logos-wrapper">
+  <!-- Gradient masks for smooth fade at edges -->
+  <div class="gradient-mask gradient-mask-left"></div>
+  <div class="gradient-mask gradient-mask-right"></div>
+
+  <!-- Scrolling track -->
+  <div class="brand-logos-track">
+    {
+      allPartners.map((partner, index) => (
+        <a
+          href={partner.href}
+          class="brand-logo-card group"
+          title={`${partner.name} - ${partner.tagline}`}
+        >
+          <img
+            src={partner.logo.src}
+            alt={`${partner.name} logo`}
+            class="brand-logo-img"
+            loading={index < 6 ? "eager" : "lazy"}
+            width={partner.logo.width}
+            height={partner.logo.height}
+            style={`--logo-scale: ${partner.scale || 1}`}
+          />
+          <span class="sr-only">
+            {partner.name} - {partner.tagline}
+          </span>
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .brand-logos-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 1rem 0;
+  }
+
+  .gradient-mask {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 5rem;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .gradient-mask-left {
+    left: 0;
+    background: linear-gradient(
+      to right,
+      var(--color-warm-stone, #f5f0e8),
+      transparent
+    );
+  }
+
+  .gradient-mask-right {
+    right: 0;
+    background: linear-gradient(
+      to left,
+      var(--color-warm-stone, #f5f0e8),
+      transparent
+    );
+  }
+
+  @media (min-width: 768px) {
+    .gradient-mask {
+      width: 8rem;
+    }
+  }
+
+  .brand-logos-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    animation: scroll 60s linear infinite;
+  }
+
+  @media (min-width: 768px) {
+    .brand-logos-track {
+      gap: 2rem;
+    }
+  }
+
+  .brand-logos-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Reduced motion fallback - static grid */
+  @media (prefers-reduced-motion: reduce) {
+    .brand-logos-track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      gap: 1rem;
+    }
+    .gradient-mask {
+      display: none;
+    }
+    /* Hide duplicated logos in static mode (starts at position 14) */
+    .brand-logo-card:nth-child(n + 14) {
+      display: none;
+    }
+  }
+
+  .brand-logo-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 10rem;
+    height: 5rem;
+    padding: 0.875rem 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(139, 115, 85, 0.12);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
+    .brand-logo-card {
+      width: 11rem;
+      height: 5.5rem;
+      padding: 1rem 1.25rem;
+    }
+  }
+
+  .brand-logo-card:hover {
+    border-color: rgba(176, 141, 87, 0.35);
+    box-shadow: 0 4px 16px rgba(176, 141, 87, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .brand-logo-card:focus-visible {
+    outline: 2px solid var(--color-copper, #b87333);
+    outline-offset: 2px;
+  }
+
+  .brand-logo-img {
+    max-height: 2.25rem;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /* Grayscale with contrast boost for visibility */
+    filter: grayscale(100%) contrast(1.2) brightness(0.4);
+    opacity: 0.85;
+    transition: all 0.3s ease;
+    /* Apply individual scale for visual proportionality */
+    transform: scale(var(--logo-scale, 1));
+  }
+
+  @media (min-width: 768px) {
+    .brand-logo-img {
+      max-height: 2.75rem;
+    }
+  }
+
+  .brand-logo-card:hover .brand-logo-img {
+    filter: grayscale(0%) contrast(1) brightness(1);
+    opacity: 1;
+    /* Maintain scale on hover */
+    transform: scale(var(--logo-scale, 1));
+  }
+</style>

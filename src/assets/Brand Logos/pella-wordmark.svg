@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60">
+  <style>
+    .logo-text { font-family: Georgia, 'Times New Roman', serif; font-weight: bold; font-size: 42px; fill: #1a1a1a; letter-spacing: 2px; }
+  </style>
+  <text x="50%" y="55%" class="logo-text" text-anchor="middle">PELLA</text>
+</svg>

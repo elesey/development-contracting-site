@@ -8,8 +8,8 @@
 
 ## Current Phase
 
-> **Phase 3: Hero Section**
-> Implementing hero section with image and CTAs
+> **Phase 5: Services Showcase**
+> Implementing services section with tabs and bento grid
 
 ---
 
@@ -19,9 +19,9 @@
 | ------------------------ | ---------- | -------- |
 | 1. Foundation Setup      | ✅ Done    | 6/6      |
 | 2. Global Components     | ✅ Done    | 4/4      |
-| 3. Hero Section          | 🔄 Current | 3/5      |
-| 4. Brand Marquee         | ⏳ Pending | 0/3      |
-| 5. Services Showcase     | ⏳ Pending | 0/5      |
+| 3. Hero Section          | ✅ Done    | 5/5      |
+| 4. Brand Marquee         | ✅ Done    | 3/3      |
+| 5. Services Showcase     | 🔄 Current | 0/5      |
 | 6. Awards & Certificates | ⏳ Pending | 0/3      |
 | 7. Testimonials + Stats  | ⏳ Pending | 0/4      |
 | 8. Final CTA Band        | ⏳ Pending | 0/3      |
@@ -92,7 +92,7 @@
 
 ---
 
-## Phase 3: Hero Section
+## Phase 3: Hero Section ✅
 
 ### Tasks
 
@@ -100,7 +100,7 @@
 - [x] **3.2** Implement two-column layout (text left, image right on desktop; stacked mobile)
 - [x] **3.3** Add content: eyebrow, H1 (only H1 on page), subhead
 - [x] **3.4** Add CTAs: CALL NOW (filled Copper) + Browse Services (outline)
-- [ ] **3.5** Add trust badges (BBB, CCB, Licensed OR+WA, Lead-safe EPA RRP)
+- [x] **3.5** Add trust badges (BBB, CCB, Licensed OR+WA, Lead-safe EPA RRP)
 
 ### Content Requirements
 
@@ -108,21 +108,49 @@
 - H1: Must include Remodeling + Additions + location intent
 - Subhead: 1-2 lines benefit + craftsmanship
 
+### Files Updated
+
+- `src/pages/index.astro` — Added trust badges with icons (Shield, Medal, License, Leaf)
+- `src/data/site.ts` — Added icon property to trust badges
+
 ---
 
-## Phase 4: Brand Marquee ("Trusted by")
+## Phase 4: Brand Marquee ("Trusted by") ✅
 
 ### Tasks
 
-- [ ] **4.1** Implement Aceternity Infinite Moving Cards as logo marquee
-- [ ] **4.2** Each logo must be `<a>` linking to internal page (crawlable)
-- [ ] **4.3** Add reduced motion fallback (static logo grid)
+- [x] **4.1** Implement Aceternity Infinite Moving Cards as logo marquee
+- [x] **4.2** Each logo must be `<a>` linking to internal page (crawlable)
+- [x] **4.3** Add reduced motion fallback (static logo grid)
 
 ### Design Specs
 
 - Background: Warm Stone
-- Logos: grayscale default, optional color on hover
-- Each logo needs accessible name (alt or visually hidden)
+- Logos: grayscale default, color on hover
+- Each logo has accessible alt text + sr-only labels
+
+### Files Created/Updated
+
+- `src/components/aceternity/InfiniteMovingCards.tsx` — Aceternity infinite scrolling component
+- `src/components/LogoMarquee.tsx` — Brand marquee with logo cards and reduced motion fallback
+- `src/data/home.ts` — Added partners array with 12 premium brand logos
+- `src/styles/global-homepage.css` — Added scroll animation keyframes
+- `src/assets/Brand Logos/` — 14 SVG brand logos (Kohler, Moen, Delta, Andersen, Pella, etc.)
+
+### Brand Partners
+
+- Kohler (Kitchen & Bath)
+- Moen (Fixtures)
+- Delta (Faucets)
+- American Standard (Plumbing)
+- Andersen (Windows)
+- Pella (Doors & Windows)
+- Milgard (Windows)
+- James Hardie (Siding)
+- GAF (Roofing)
+- CertainTeed (Building Materials)
+- Shaw Floors (Flooring)
+- Benjamin Moore (Paint)
 
 ---
 
@@ -283,6 +311,30 @@
 ---
 
 ## Session Log
+
+### 2026-01-03 (Continued)
+
+- ✅ **Completed Phase 3: Hero Section**
+- Added trust badges to Hero section with proper icons:
+  - BBB Accredited A+ Rated (Medal icon)
+  - CCB #221238 (License icon)
+  - Licensed in OR + WA (Shield icon)
+  - Lead-Safe Certified EPA RRP (Leaf icon)
+- Each badge links to verification page where applicable
+- Styled with brass icons and proper spacing
+
+- ✅ **Completed Phase 4: Brand Marquee**
+- Implemented Aceternity Infinite Moving Cards component
+- Created 14 custom SVG logos for premium brand partners:
+  - Kohler, Moen, Delta, American Standard (Plumbing/Fixtures)
+  - Andersen, Pella, Milgard (Windows/Doors)
+  - James Hardie (Siding), GAF, CertainTeed (Roofing/Materials)
+  - Shaw Floors (Flooring), Benjamin Moore (Paint)
+- All logos are crawlable `<a>` links to project filter pages
+- Implemented reduced motion fallback (static 6-column grid)
+- Grayscale by default, color on hover transition
+- Warm Stone background per spec
+- Added proper sr-only labels for accessibility
 
 ### 2026-01-04
 
