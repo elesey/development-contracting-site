@@ -52,12 +52,42 @@ Every completion note must include:
 
 ## Repo layout (Astro conventions)
 
-- `src/pages/` — routes
-- `src/components/` — reusable UI components
-- `src/layouts/` — page layouts
-- `src/styles/` — global styles
+### Core folders
+
+- `src/pages/` — routes (Astro file-based routing)
+- `src/layouts/` — page layouts (Layout.astro, LayoutV2.astro)
+- `src/styles/` — global CSS (global.css, global-v2.css)
 - `src/lib/` — utilities (e.g. `cn`, helpers)
 - `public/` — static assets
+- `src/assets/` — processed assets (images, SVGs)
+
+### Components organization
+
+- `src/components/ui/` — shadcn/ui base components (Button, Input, etc.)
+- `src/components/aceternity/` — Aceternity UI effects (hero animations, etc.)
+- `src/components/common/` — shared components across pages (Header, Footer, etc.)
+
+### Sections (page-specific content blocks)
+
+- `src/sections/home/` — Home page sections (Hero, Services, Contact, etc.)
+- `src/sections/about/` — About page sections (future)
+- `src/sections/services/` — Services page sections (future)
+- `src/sections/contact/` — Contact page sections (future)
+
+**Why sections?** Large pages like `v2.astro` have many inline sections. Breaking them into separate files:
+
+- Makes each section easier to edit independently
+- Enables reuse across pages
+- Improves code review and git diffs
+- Allows multiple developers to work on different sections simultaneously
+
+### Data layer
+
+- `src/data/site.ts` — Site-wide data (company info, nav, footer links, SEO)
+- `src/data/home.ts` — Home page content (services, testimonials, stats, etc.)
+- `src/data/index.ts` — Central export for all data
+
+**Import pattern:** `import { company, services } from '@/data'`
 
 ---
 

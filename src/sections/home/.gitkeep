@@ -1,0 +1,19 @@
+# Home Page Sections
+# 
+# This folder will contain all sections for the home page.
+# Each section should be its own .astro file for easy editing.
+#
+# Planned sections (from v2.astro):
+# - Hero.astro
+# - StatsBar.astro
+# - PartnersMarquee.astro
+# - Restoration.astro
+# - Services.astro
+# - WhyChooseUs.astro
+# - About.astro
+# - Process.astro
+# - Projects.astro
+# - Reviews.astro
+# - Contact.astro
+# - Footer.astro (or move to common/)
+

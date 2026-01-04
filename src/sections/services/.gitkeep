@@ -1,0 +1,15 @@
+# Services Page Sections
+# 
+# This folder will contain sections for the Services pages.
+# Could be split further by service type:
+# - residential/
+# - commercial/
+# - restoration/
+#
+# Common sections might include:
+# - ServicesHero.astro
+# - ServicesList.astro
+# - ServiceDetails.astro
+# - BeforeAfter.astro
+# - ServiceCTA.astro
+

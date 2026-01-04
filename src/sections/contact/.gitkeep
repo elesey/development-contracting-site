@@ -1,0 +1,10 @@
+# Contact Page Sections
+# 
+# This folder will contain sections for a dedicated Contact page.
+# Sections might include:
+# - ContactHero.astro
+# - ContactForm.astro (full page version)
+# - LocationMap.astro
+# - ServiceAreas.astro
+# - FAQ.astro
+

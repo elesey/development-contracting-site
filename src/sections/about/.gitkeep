@@ -1,0 +1,10 @@
+# About Page Sections
+# 
+# This folder will contain sections specific to the About page.
+# Future sections might include:
+# - AboutHero.astro
+# - Team.astro
+# - History.astro
+# - Values.astro
+# - Certifications.astro
+
