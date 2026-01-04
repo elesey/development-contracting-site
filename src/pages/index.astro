@@ -1,38 +1,370 @@
 ---
 /**
- * Home Page - New Design
+ * Home Page
  *
- * This is a blank canvas for the new home page design.
- * Data imports are available from @/data when ready.
+ * Homepage with Warm Craftsman Premium design (light mode only).
+ * Built following HOMEPAGE-SPEC.md and frontend/AGENTS.md
  */
-import LayoutV2 from "@/layouts/LayoutV2.astro";
+import LayoutHomepage from "@/layouts/LayoutHomepage.astro";
+import {
+  company,
+  licensing,
+  trustBadges,
+  heroContent,
+  stats,
+  awards,
+} from "@/data";
 ---
 
-<LayoutV2>
-  <main>
-    <!-- 
-      New Home Page Design
-      ====================
-      
-      This is a blank canvas ready for the new design.
-      
-      Available resources:
-      - Data: import { company, services, testimonials } from '@/data'
-      - Sections folder: src/sections/home/
-      - Components: src/components/ui/, src/components/aceternity/
-      
-      Archived pages for reference:
-      - src/_archive/index.astro (original design)
-      - src/_archive/v2.astro (v2 design with all sections)
-    -->
+<LayoutHomepage>
+  <!-- Header placeholder (Phase 2) -->
+  <header class="bg-evergreen text-white">
+    <div class="container-homepage">
+      <!-- Utility bar -->
+      <div
+        class="flex items-center justify-between border-b border-white/10 py-2 text-sm"
+      >
+        <span class="text-white/80">{company.serviceAreaLong}</span>
+        <span class="text-white/80">
+          Licensed • Bonded • Insured • {licensing.ccb.display}
+        </span>
+      </div>
 
-    <section class="flex min-h-screen items-center justify-center">
-      <div class="text-center">
-        <p class="text-muted-foreground text-sm tracking-widest uppercase">
-          New Design Coming Soon
+      <!-- Main nav placeholder -->
+      <nav class="flex items-center justify-between py-4">
+        <a href="/" class="text-xl font-bold tracking-tight text-white">
+          {company.name}
+        </a>
+
+        <div class="flex items-center gap-6">
+          <a href="#services" class="text-white/90 hover:text-white">
+            Services
+          </a>
+          <a href="#about" class="text-white/90 hover:text-white">About</a>
+          <a href="#contact" class="text-white/90 hover:text-white">Contact</a>
+
+          <div class="flex items-center gap-3">
+            <span class="hidden text-white/90 md:block">{company.phone}</span>
+            <a href={company.phoneHref} class="btn-primary">CALL NOW</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Section (Phase 3 preview) -->
+    <section class="section-padding bg-bone">
+      <div class="container-homepage">
+        <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <!-- Left: Text content -->
+          <div class="max-w-xl">
+            <!-- Eyebrow -->
+            <p
+              class="text-brass mb-4 text-sm font-semibold tracking-wider uppercase"
+            >
+              {heroContent.eyebrow}
+            </p>
+
+            <!-- H1 Headline -->
+            <h1 class="text-charcoal mb-6">
+              {heroContent.headline}
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-slate mb-8 text-lg leading-relaxed">
+              {heroContent.subheadline}
+            </p>
+
+            <!-- CTAs -->
+            <div class="mb-8 flex flex-wrap items-center gap-4">
+              <a href={heroContent.primaryCta.href} class="btn-primary">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+                {heroContent.primaryCta.text}
+              </a>
+              <a href={heroContent.secondaryCta.href} class="btn-secondary">
+                {heroContent.secondaryCta.text}
+              </a>
+            </div>
+
+            <!-- Trust badges -->
+            <div class="flex flex-wrap gap-3">
+              {
+                trustBadges.map((badge) => (
+                  <span class="trust-badge">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="text-brass h-4 w-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    {badge.label}
+                  </span>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Right: Image placeholder -->
+          <div
+            class="bg-warm-stone border-driftwood aspect-[4/3] rounded-lg border-2 border-dashed"
+          >
+            <div
+              class="text-slate flex h-full items-center justify-center text-center"
+            >
+              <div>
+                <p class="text-sm font-medium">Hero Image</p>
+                <p class="mt-1 text-xs opacity-70">Kitchen or addition photo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Brand Marquee placeholder (Phase 4) -->
+    <section class="bg-warm-stone py-8">
+      <div class="container-homepage">
+        <p
+          class="text-slate text-center text-sm font-medium tracking-wider uppercase"
+        >
+          Trusted Partners & Premium Materials
         </p>
-        <h1 class="mt-4 text-4xl font-bold">Home Page</h1>
+        <div
+          class="border-driftwood text-slate mt-4 rounded border-2 border-dashed p-8 text-center"
+        >
+          <p class="text-sm">Brand marquee will go here (Phase 4)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services placeholder (Phase 5) -->
+    <section id="services" class="section-padding bg-bone">
+      <div class="container-homepage">
+        <h2 class="text-evergreen mb-4 text-center">
+          Remodeling & Home Additions
+        </h2>
+        <p class="text-slate mx-auto mb-12 max-w-2xl text-center">
+          Expert craftsmanship for kitchens, bathrooms, whole-home renovations,
+          and custom additions.
+        </p>
+        <div
+          class="border-driftwood text-slate rounded border-2 border-dashed p-12 text-center"
+        >
+          <p class="text-sm">
+            Services showcase with tabs will go here (Phase 5)
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Awards & Certificates placeholder (Phase 6) -->
+    <section class="section-padding bg-warm-stone">
+      <div class="container-homepage">
+        <h2 class="text-evergreen mb-8 text-center">
+          Credentials & Certifications
+        </h2>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            awards.slice(0, 6).map((award) => (
+              <div class="card-shadow bg-card rounded-lg p-6">
+                <div class="text-brass mb-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-8 w-8"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <h3 class="text-charcoal mb-2 text-lg">{award.title}</h3>
+                <p class="text-slate text-sm">{award.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section-padding bg-sage-mist">
+      <div class="container-homepage">
+        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {
+            stats.map((stat) => (
+              <div class="text-center">
+                <p class="text-evergreen text-4xl font-bold md:text-5xl">
+                  {stat.value}
+                </p>
+                <p class="text-slate mt-2 text-sm font-medium tracking-wide uppercase">
+                  {stat.label}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials placeholder (Phase 7) -->
+    <section id="reviews" class="section-padding bg-bone">
+      <div class="container-homepage">
+        <h2 class="text-evergreen mb-4 text-center">What Our Clients Say</h2>
+        <p class="text-slate mx-auto mb-8 max-w-2xl text-center">
+          Don't just take our word for it. Here's what our clients have to say
+          about working with us.
+        </p>
+        <div
+          class="border-driftwood text-slate rounded border-2 border-dashed p-12 text-center"
+        >
+          <p class="text-sm">Animated testimonials will go here (Phase 7)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Section (Phase 8 preview) -->
+    <section id="contact" class="section-padding bg-evergreen">
+      <div class="container-homepage">
+        <div
+          class="flex flex-col items-center justify-between gap-8 md:flex-row"
+        >
+          <div class="text-center md:text-left">
+            <h2 class="mb-3 text-white">Ready to Start Your Project?</h2>
+            <p class="max-w-md text-white/80">
+              From remodels to additions, our team is ready to bring your vision
+              to life. Licensed in Oregon & Washington.
+            </p>
+          </div>
+
+          <div class="flex flex-col items-center gap-3 sm:flex-row">
+            <span class="text-xl font-semibold text-white">{company.phone}</span
+            >
+            <a href={company.phoneHref} class="btn-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                ></path>
+              </svg>
+              CALL NOW
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
-</LayoutV2>
+
+  <!-- Footer placeholder (Phase 9) -->
+  <footer class="bg-evergreen py-12">
+    <div class="container-homepage">
+      <div class="grid gap-8 md:grid-cols-4">
+        <!-- Company info -->
+        <div class="md:col-span-2">
+          <h3 class="mb-4 text-xl font-bold text-white">{company.name}</h3>
+          <p class="mb-4 text-white/80">{company.tagline}</p>
+          <p class="text-white/80">
+            <a href={company.phoneHref} class="text-copper hover:underline">
+              {company.phone}
+            </a>
+          </p>
+          <p class="mt-1 text-white/60">
+            <a href={company.emailHref} class="hover:text-white/80">
+              {company.email}
+            </a>
+          </p>
+        </div>
+
+        <!-- Quick links -->
+        <div>
+          <h4 class="mb-4 font-semibold text-white">Services</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="/remodeling" class="text-white/70 hover:text-white"
+                >Remodeling</a>
+            </li>
+            <li>
+              <a href="/additions" class="text-white/70 hover:text-white"
+                >Additions</a>
+            </li>
+            <li>
+              <a href="/restoration" class="text-white/70 hover:text-white"
+                >Restoration</a>
+            </li>
+            <li>
+              <a href="/commercial" class="text-white/70 hover:text-white"
+                >Commercial</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Company links -->
+        <div>
+          <h4 class="mb-4 font-semibold text-white">Company</h4>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="/about" class="text-white/70 hover:text-white"
+                >About Us</a>
+            </li>
+            <li>
+              <a href="/projects" class="text-white/70 hover:text-white"
+                >Projects</a>
+            </li>
+            <li>
+              <a href="/reviews" class="text-white/70 hover:text-white"
+                >Reviews</a>
+            </li>
+            <li>
+              <a href="/contact" class="text-white/70 hover:text-white"
+                >Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div
+        class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row"
+      >
+        <p class="text-sm text-white/60">
+          © {new Date().getFullYear()}
+          {company.name}. All rights reserved.
+        </p>
+        <p class="text-sm text-white/60">
+          {licensing.ccb.display} • {company.serviceArea}
+        </p>
+      </div>
+    </div>
+  </footer>
+</LayoutHomepage>

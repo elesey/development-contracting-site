@@ -3,6 +3,9 @@ node_modules/
 dist/
 .astro/
 
+# Images (temporarily excluded - will be included later)
+images/
+
 # Environment
 .env
 .DS_Store

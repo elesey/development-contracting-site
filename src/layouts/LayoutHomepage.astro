@@ -1,0 +1,127 @@
+---
+/**
+ * LayoutHomepage.astro
+ *
+ * Homepage-specific layout with light-mode only design.
+ * Uses the Warm Craftsman Premium color palette.
+ *
+ * Based on: HOMEPAGE-SPEC.md and frontend/AGENTS.md
+ */
+import "../styles/global-homepage.css";
+import { company, seoDefaults } from "@/data";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = "Remodeling & Home Additions | Development Contracting | Oregon & Washington",
+  description = "Expert remodeling, home additions, and renovation services in Oregon & Washington. Licensed, bonded, and insured. CCB #221238. BBB Accredited with A+ Rating. Call (503) 470-7007.",
+  canonical = Astro.url.href,
+} = Astro.props;
+
+// Structured data for LocalBusiness (matches visible page content)
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  name: company.name,
+  description: description,
+  telephone: company.phone,
+  email: company.email,
+  url: Astro.site?.toString() || "https://developmentcontracting.com",
+  areaServed: [
+    {
+      "@type": "State",
+      name: "Oregon",
+    },
+    {
+      "@type": "State",
+      name: "Washington",
+    },
+  ],
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "license",
+      name: "Oregon Construction Contractors Board License",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Oregon Construction Contractors Board",
+      },
+      identifier: "CCB #221238",
+    },
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    reviewCount: "50",
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={company.name} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Typography: Libre Baskerville (headings) + Source Sans 3 (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </head>
+
+  <body class="min-h-screen antialiased">
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-to-content"> Skip to main content </a>
+
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* Smooth scrolling with reduced motion support */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+</style>
