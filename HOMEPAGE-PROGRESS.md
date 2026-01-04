@@ -8,8 +8,8 @@
 
 ## Current Phase
 
-> **Phase 2: Global Components**
-> Building header, footer, and button variants
+> **Phase 3: Hero Section**
+> Implementing hero section with image and CTAs
 
 ---
 
@@ -18,14 +18,14 @@
 | Phase                    | Status     | Progress |
 | ------------------------ | ---------- | -------- |
 | 1. Foundation Setup      | ✅ Done    | 6/6      |
-| 2. Global Components     | 🔄 Current | 0/4      |
-| 3. Hero Section          | ⏳ Pending | 0/5      |
+| 2. Global Components     | ✅ Done    | 4/4      |
+| 3. Hero Section          | 🔄 Current | 3/5      |
 | 4. Brand Marquee         | ⏳ Pending | 0/3      |
 | 5. Services Showcase     | ⏳ Pending | 0/5      |
 | 6. Awards & Certificates | ⏳ Pending | 0/3      |
 | 7. Testimonials + Stats  | ⏳ Pending | 0/4      |
 | 8. Final CTA Band        | ⏳ Pending | 0/3      |
-| 9. Footer                | ⏳ Pending | 0/3      |
+| 9. Footer                | ✅ Done    | 3/3      |
 | 10. SEO & Metadata       | ⏳ Pending | 0/5      |
 | 11. Accessibility & QA   | ⏳ Pending | 0/6      |
 
@@ -60,17 +60,25 @@
 
 ---
 
-## Phase 2: Global Components
+## Phase 2: Global Components ✅
 
 ### Tasks
 
-- [ ] **2.1** Build Sticky Header component with utility bar
-  - [ ] Desktop: Logo | Nav links | CALL NOW button + phone
-  - [ ] Mobile: Sheet menu with phone first
-  - [ ] Utility bar: "Serving Oregon + Washington" + licensing
-- [ ] **2.2** Configure shadcn Button variants (only CALL NOW is filled/Copper)
-- [ ] **2.3** Add "Skip to content" link for accessibility
-- [ ] **2.4** Build Footer component with NAP info, CCB, nav links, social
+- [x] **2.1** Build Sticky Header component with utility bar
+  - [x] Desktop: Logo | Nav links | CALL NOW button + phone
+  - [x] Mobile: Sheet menu with phone first
+  - [x] Utility bar: "Serving Oregon + Washington" + licensing
+- [x] **2.2** Configure shadcn Button variants (only CALL NOW is filled/Copper)
+- [x] **2.3** Add "Skip to content" link for accessibility
+- [x] **2.4** Build Footer component with NAP info, CCB, nav links, social
+
+### Files Created/Updated
+
+- `src/components/StickyHeader.astro` — Sticky header with utility bar, nav, CALL NOW CTA
+- `src/components/MobileNav.tsx` — Mobile sheet navigation with phone-first design
+- `src/components/Footer.astro` — Footer with NAP, credentials, services, social links
+- `src/components/ui/button.tsx` — Updated with proper Warm Craftsman variants
+- `src/pages/index.astro` — Integrated StickyHeader and Footer components
 
 ### Nav Link Priority Order
 
@@ -88,10 +96,10 @@
 
 ### Tasks
 
-- [ ] **3.1** Create Hero section component in `src/sections/home/`
-- [ ] **3.2** Implement two-column layout (text left, image right on desktop; stacked mobile)
-- [ ] **3.3** Add content: eyebrow, H1 (only H1 on page), subhead
-- [ ] **3.4** Add CTAs: CALL NOW (filled Copper) + Browse Services (outline)
+- [x] **3.1** Create Hero section component in `src/sections/home/`
+- [x] **3.2** Implement two-column layout (text left, image right on desktop; stacked mobile)
+- [x] **3.3** Add content: eyebrow, H1 (only H1 on page), subhead
+- [x] **3.4** Add CTAs: CALL NOW (filled Copper) + Browse Services (outline)
 - [ ] **3.5** Add trust badges (BBB, CCB, Licensed OR+WA, Lead-safe EPA RRP)
 
 ### Content Requirements
@@ -204,13 +212,13 @@
 
 ---
 
-## Phase 9: Footer
+## Phase 9: Footer ✅
 
 ### Tasks
 
-- [ ] **9.1** Phone + email (info@developmentcontracting.com)
-- [ ] **9.2** CCB #221238 + all nav links
-- [ ] **9.3** Social links (Facebook, Instagram)
+- [x] **9.1** Phone + email (info@developmentcontracting.com)
+- [x] **9.2** CCB #221238 + all nav links
+- [x] **9.3** Social links (Facebook, Instagram, Google Business)
 
 ---
 
@@ -277,6 +285,44 @@
 ## Session Log
 
 ### 2026-01-04
+
+- ✅ **Redesigned Header with Glass Effect**
+- Removed utility bar entirely (no Oregon & Washington / CCB bar at top)
+- Implemented glass/frosted navbar with:
+  - Semi-transparent background with backdrop blur
+  - Smooth scroll animation (shrinks to floating pill on scroll)
+  - Animated hover effects on nav items (pill follows cursor)
+  - CALL NOW button with gradient shine animation
+  - Responsive mobile menu with hamburger icon
+- Fixed phone number + CALL NOW wrapping issue
+- Removed "Commercial" from navigation menu
+- Created `src/components/NavbarHeader.tsx` with Motion animations
+
+- ✅ **Completed Phase 2: Global Components**
+- Created `src/components/StickyHeader.astro` with:
+  - Simplified utility bar (service area + CCB only)
+  - Desktop navigation with proper link priority order
+  - CALL NOW button (Copper/filled) as primary CTA
+  - Phone number displayed on medium+ screens
+- Created `src/components/MobileNav.tsx` with:
+  - Sheet-style slide-out menu
+  - Phone-first design (CALL NOW is prominent at top)
+  - All nav links with primary/secondary styling
+  - Trust info in footer
+- Created `src/components/Footer.astro` with:
+  - Company NAP (Name, Address, Phone)
+  - Email and location
+  - Services quick links
+  - Company links
+  - Credentials section with verification links
+  - Social media links
+  - Bottom bar with copyright and CCB
+- Updated `src/components/ui/button.tsx` with Warm Craftsman variants:
+  - default (Copper) — ONLY for CALL NOW
+  - outline (Evergreen border)
+  - ghost (Evergreen text)
+- Updated hero section with actual kitchen image
+- Verified in browser: Header, footer, and all buttons display correctly
 
 - ✅ **Completed Phase 1: Foundation Setup**
 - Created `src/styles/global-homepage.css` with light-mode only color tokens

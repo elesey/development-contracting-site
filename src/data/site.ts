@@ -63,7 +63,6 @@ export const mainNavigation = [
   { name: "Remodeling", href: "/remodeling", primary: true },
   { name: "Additions", href: "/additions", primary: true },
   { name: "Residential", href: "/residential", primary: false },
-  { name: "Commercial", href: "/commercial", primary: false },
   { name: "Restoration", href: "/restoration", secondary: true },
   { name: "About", href: "/about", primary: false },
   { name: "Contact", href: "/contact", primary: false },

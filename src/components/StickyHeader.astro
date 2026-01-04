@@ -1,0 +1,22 @@
+---
+/**
+ * StickyHeader Component
+ *
+ * Glass-style sticky header with scroll animations.
+ * No utility bar - clean and minimal design.
+ */
+import { company, mainNavigation } from "@/data";
+import NavbarHeader from "./NavbarHeader";
+---
+
+<header class="header-wrapper">
+  <NavbarHeader
+    client:load
+    companyName={company.name}
+    phone={company.phone}
+    phoneHref={company.phoneHref}
+    navItems={mainNavigation}
+  />
+  <!-- Spacer to account for fixed header -->
+  <div class="h-20"></div>
+</header>

@@ -6,22 +6,33 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetClose,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
 interface NavItem {
-  label: string;
+  name: string;
   href: string;
+  primary?: boolean;
+  secondary?: boolean;
 }
 
 interface MobileNavProps {
   navItems: NavItem[];
-  phoneNumber?: string;
+  companyName: string;
+  phone: string;
+  phoneHref: string;
+  ccbDisplay: string;
+  serviceArea: string;
 }
 
 export function MobileNav({
   navItems,
-  phoneNumber = "(503) 470-7007",
+  companyName,
+  phone,
+  phoneHref,
+  ccbDisplay,
+  serviceArea,
 }: MobileNavProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -31,82 +42,114 @@ export function MobileNav({
         <Button
           variant="ghost"
           size="icon"
-          className="-mr-2 p-2 hover:bg-transparent md:hidden"
-          aria-label="Open menu"
+          className="text-white hover:bg-white/10 lg:hidden"
+          aria-label="Open navigation menu"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="text-ink h-6 w-6"
+            className="h-6 w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
-            strokeWidth="1.5"
+            strokeWidth="2"
           >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M3.75 9h16.5m-16.5 6.75h16.5"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
             />
           </svg>
         </Button>
       </SheetTrigger>
+
       <SheetContent
         side="right"
-        className="bg-bone border-line w-full sm:max-w-sm"
+        className="border-driftwood bg-bone w-full max-w-sm border-l"
       >
-        <SheetHeader className="text-left">
-          <SheetTitle
-            className="text-ink text-lg font-bold tracking-tight"
-            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
-          >
-            Development<span className="text-cedar">.</span>
+        <SheetHeader className="border-driftwood border-b pb-4">
+          <SheetTitle className="text-evergreen font-serif text-xl font-bold">
+            {companyName}
           </SheetTitle>
         </SheetHeader>
 
-        <nav className="mt-8 flex flex-col gap-1">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className="text-ink hover:text-cedar border-line/50 border-b px-2 py-3 text-lg font-medium transition-colors"
+        {/* Phone CTA - First and prominent */}
+        <div className="border-driftwood border-b py-6">
+          <p className="text-slate mb-3 text-sm font-medium tracking-wider uppercase">
+            Call Us Now
+          </p>
+          <a
+            href={phoneHref}
+            className="bg-copper hover:bg-copper/90 mb-4 flex items-center gap-3 rounded-lg px-4 py-3 text-white transition-all"
+            onClick={() => setIsOpen(false)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              {item.label}
-            </a>
-          ))}
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <span className="text-lg font-semibold">{phone}</span>
+          </a>
+          <p className="text-slate text-sm">Available Mon–Sat, 7am–6pm</p>
+        </div>
+
+        {/* Navigation Links */}
+        <nav className="py-4">
+          <p className="text-slate mb-3 text-sm font-medium tracking-wider uppercase">
+            Menu
+          </p>
+          <ul className="space-y-1">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center rounded-md px-3 py-3 text-base font-medium transition-colors ${
+                    item.secondary
+                      ? "text-slate hover:bg-sage-mist hover:text-charcoal"
+                      : "text-charcoal hover:bg-sage-mist hover:text-evergreen"
+                  }`}
+                >
+                  {item.name}
+                  {item.primary && (
+                    <span className="bg-evergreen/10 text-evergreen ml-2 rounded px-2 py-0.5 text-xs font-semibold">
+                      Popular
+                    </span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        {phoneNumber && (
-          <div className="border-line mt-8 border-t pt-8">
-            <a
-              href={`tel:${phoneNumber.replace(/[^0-9]/g, "")}`}
-              className="text-ink hover:text-cedar flex items-center gap-3 transition-colors"
-            >
-              <div className="border-line flex h-10 w-10 items-center justify-center rounded border">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="text-cedar h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <div className="font-medium">{phoneNumber}</div>
-                <div className="text-muted-foreground text-sm">
-                  Mon–Fri, 7am–6pm
-                </div>
-              </div>
-            </a>
+        {/* Trust Footer */}
+        <div className="border-driftwood bg-warm-stone absolute right-0 bottom-0 left-0 border-t p-4">
+          <div className="text-slate flex items-center justify-between text-xs">
+            <span>{ccbDisplay}</span>
+            <span className="flex items-center gap-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-brass h-3.5 w-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              Licensed • Bonded • Insured
+            </span>
           </div>
-        )}
+          <p className="text-slate/70 mt-2 text-center text-xs">
+            {serviceArea}
+          </p>
+        </div>
       </SheetContent>
     </Sheet>
   );
