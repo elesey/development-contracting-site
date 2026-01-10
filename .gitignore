@@ -10,6 +10,14 @@ images/
 .env
 .DS_Store
 
+# Local-only pages/layout/styles (exclude from repo)
+src/_archive/
+src/pages/v2.astro
+src/styles/global-v2.css
+src/layouts/LayoutV2.astro
+src/styles/global.css
+src/layouts/Layout.astro
+
 # Editor
 .vscode/*
 !.vscode/settings.json
