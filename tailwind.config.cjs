@@ -46,17 +46,17 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         // Warm Craftsman Premium palette (light mode)
-        bone: "#FAF7F2",           // Page background
-        "clean-white": "#FFFFFF",   // Cards, surfaces
-        evergreen: "#06392F",       // Nav, footer, badges
-        copper: "#B1593B",          // CALL NOW CTA only
-        brass: "#8A6A2E",           // Premium accents
-        "warm-stone": "#E7E1D9",    // Alt section background
-        "sage-mist": "#E6F0ED",     // Testimonials band
-        charcoal: "#1B1B1B",        // Body text
-        slate: "#334155",           // Meta text
-        driftwood: "#8F877D",       // Borders
-        restoration: "#A35F10",     // Restoration accent (use sparingly)
+        bone: "#FAF7F2", // Page background
+        "clean-white": "#FFFFFF", // Cards, surfaces
+        evergreen: "#06392F", // Nav, footer, badges
+        copper: "#B1593B", // CALL NOW CTA only
+        brass: "#8A6A2E", // Premium accents
+        "warm-stone": "#E7E1D9", // Alt section background
+        "sage-mist": "#E6F0ED", // Testimonials band
+        charcoal: "#1B1B1B", // Body text
+        slate: "#334155", // Meta text
+        driftwood: "#8F877D", // Borders
+        restoration: "#A35F10", // Restoration accent (use sparingly)
       },
       borderRadius: {
         lg: "var(--radius)",
