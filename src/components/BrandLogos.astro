@@ -6,6 +6,7 @@
  */
 
 // Import local SVG logos from assets
+import { Image } from "astro:assets";
 import kohlerLogo from "@/assets/Brand Logos/kohler.svg";
 import moenLogo from "@/assets/Brand Logos/moen.svg";
 import deltaLogo from "@/assets/Brand Logos/delta-faucet.svg";
@@ -140,8 +141,8 @@ const allPartners = [...partners, ...partners];
           class="brand-logo-card group"
           title={`${partner.name} - ${partner.tagline}`}
         >
-          <img
-            src={partner.logo.src}
+          <Image
+            src={partner.logo}
             alt={`${partner.name} logo`}
             class="brand-logo-img"
             loading={index < 6 ? "eager" : "lazy"}

@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import {
   IconMenu2,
@@ -13,7 +11,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 
 interface SubmenuItem {
   name: string;
@@ -31,13 +29,12 @@ interface NavItem {
 
 interface ElegantNavbarProps {
   navItems: NavItem[];
-  companyName: string;
   phone: string;
   phoneHref: string;
 }
 
 // Geometric Logo - Clean, modern design
-const Logo = ({ scrolled = false }: { scrolled?: boolean }) => (
+const Logo = () => (
   <a href="/" className="group relative z-20 flex items-center gap-3">
     {/* Geometric Logo Mark */}
     <div className="relative flex h-10 w-10 items-center justify-center">
@@ -208,7 +205,7 @@ const DesktopNav = ({
       )}
     >
       {/* Logo */}
-      <Logo scrolled={scrolled} />
+      <Logo />
 
       {/* Nav Items */}
       <div className="flex items-center gap-1" onMouseLeave={handleMouseLeave}>
@@ -312,7 +309,6 @@ const MobileNav = ({
   phoneHref: string;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [expandedSubmenu, setExpandedSubmenu] = useState<number | null>(null);
 
   // Prevent body scroll when menu is open
   React.useEffect(() => {
@@ -338,8 +334,9 @@ const MobileNav = ({
   }, [isOpen]);
 
   // Flatten nav items for display (extract submenu items)
-  const flattenedNavItems = navItems.flatMap((item) =>
-    item.submenu ? item.submenu : [item],
+  const flattenedNavItems = useMemo(
+    () => navItems.flatMap((item) => (item.submenu ? item.submenu : [item])),
+    [navItems],
   );
 
   return (
@@ -351,7 +348,7 @@ const MobileNav = ({
           scrolled ? "px-4 py-3" : "px-4 py-4",
         )}
       >
-        <Logo scrolled={scrolled} />
+        <Logo />
 
         <div className="flex items-center gap-2">
           {/* Mobile Call Button */}
@@ -539,7 +536,6 @@ const MobileNav = ({
 
 export const ElegantNavbar = ({
   navItems,
-  companyName,
   phone,
   phoneHref,
 }: ElegantNavbarProps) => {
@@ -548,7 +544,8 @@ export const ElegantNavbar = ({
   const [scrolled, setScrolled] = useState(false);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 50);
+    const isScrolled = latest > 50;
+    setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
   });
 
   return (

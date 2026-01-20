@@ -9,14 +9,9 @@ import LayoutHomepage from "@/layouts/LayoutHomepage.astro";
 import StickyHeader from "@/components/StickyHeader.astro";
 import Footer from "@/components/Footer.astro";
 import BrandLogos from "@/components/BrandLogos.astro";
-import {
-  company,
-  licensing,
-  trustBadges,
-  heroContent,
-  stats,
-  awards,
-} from "@/data";
+import { Image } from "astro:assets";
+import heroImage from "../assets/Gemini_Generated_Image_chqjxychqjxychqj.png";
+import { company, licensing, heroContent, stats, awards } from "@/data";
 ---
 
 <LayoutHomepage>
@@ -166,13 +161,14 @@ import {
           <!-- Right: Hero Image -->
           <div class="relative">
             <div class="overflow-hidden rounded-lg shadow-xl">
-              <img
-                src="/images/modern-kitchen-sink-3-2.webp"
+              <Image
+                src={heroImage}
                 alt="Modern kitchen remodel with elegant fixtures and premium finishes"
                 class="h-auto w-full object-cover"
-                width="800"
-                height="533"
+                width={800}
+                height={533}
                 loading="eager"
+                decoding="async"
               />
             </div>
             <!-- Accent card overlay -->

@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 
@@ -11,7 +10,6 @@ interface NavItem {
 
 interface MobileNavProps {
   navItems: NavItem[];
-  companyName: string;
   phone: string;
   phoneHref: string;
   ccbDisplay: string;
@@ -20,7 +18,6 @@ interface MobileNavProps {
 
 export function MobileNav({
   navItems,
-  companyName,
   phone,
   phoneHref,
   ccbDisplay,

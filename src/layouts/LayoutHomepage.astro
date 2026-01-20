@@ -8,7 +8,7 @@
  * Based on: HOMEPAGE-SPEC.md and frontend/AGENTS.md
  */
 import "../styles/global-homepage.css";
-import { company, seoDefaults } from "@/data";
+import { company } from "@/data";
 
 interface Props {
   title?: string;
@@ -102,6 +102,7 @@ const structuredData = {
     <script
       type="application/ld+json"
       set:html={JSON.stringify(structuredData)}
+      is:inline
     />
   </head>
 

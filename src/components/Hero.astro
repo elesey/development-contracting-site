@@ -1,6 +1,7 @@
 ---
 import { TextGenerateEffect } from "./aceternity/TextGenerateEffect";
 import { SpotlightButton } from "./aceternity/SpotlightButton";
+import { Image } from "astro:assets";
 import heroImage from "../assets/Gemini_Generated_Image_chqjxychqjxychqj.png";
 ---
 
@@ -218,13 +219,14 @@ import heroImage from "../assets/Gemini_Generated_Image_chqjxychqjxychqj.png";
             <div
               class="hero-image-wrapper relative aspect-[16/10] overflow-hidden"
             >
-              <img
-                src={heroImage.src}
+              <Image
+                src={heroImage}
                 alt="Custom home design on architectural blueprints"
                 class="h-full w-full object-cover object-center"
-                width="2720"
-                height="1568"
+                width={2720}
+                height={1568}
                 loading="eager"
+                decoding="async"
               />
               <!-- Subtle vignette overlay -->
               <div class="hero-vignette absolute inset-0"></div>
